@@ -1,0 +1,17 @@
+Main Page should have a basic CMS window accessible by hidden login
+Main Page is dynamically generated from post archive
+
+Pages:
+
+Blog // dynamic
+About Me // static
+Projects // dynamic?
+Contact Me // static
+
+It will look like this:
+
+- a high-resolution watercolor image in the background
+- a semi-transparent black content column
+- white sans-serif text?
+
+need a good title: "The Working Man"

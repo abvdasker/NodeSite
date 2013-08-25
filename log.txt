@@ -1,0 +1,81 @@
+GET /GET /GET /GET / undefined
+method: GET url: / params: undefined
+
+method: GET
+ url: /
+ params: undefined
+
+at: Sun Aug 25 2013 15:35:04 GMT-0400 (EDT)
+method: GET
+url: /
+params: undefined
+
+at: Sun Aug 25 2013 15:54:09 GMT-0400 (EDT)
+method: GET
+url: /public/test.js
+params: undefined
+
+at: Sun Aug 25 2013 15:54:26 GMT-0400 (EDT)
+method: GET
+url: /public/
+params: undefined
+
+at: Sun Aug 25 2013 15:54:31 GMT-0400 (EDT)
+method: GET
+url: /test.js
+params: undefined
+
+at: Sun Aug 25 2013 15:54:51 GMT-0400 (EDT)
+method: GET
+url: /test.js
+params: undefined
+
+at: Sun Aug 25 2013 15:54:57 GMT-0400 (EDT)
+method: GET
+url: /test.js
+params: undefined
+
+at: Sun Aug 25 2013 15:55:01 GMT-0400 (EDT)
+method: GET
+url: /static/test.js
+params: undefined
+
+at: Sun Aug 25 2013 15:56:24 GMT-0400 (EDT)
+method: GET
+url: /static/test
+params: undefined
+
+at: Sun Aug 25 2013 15:56:27 GMT-0400 (EDT)
+method: GET
+url: /static/test.html
+params: undefined
+
+at: Sun Aug 25 2013 15:56:27 GMT-0400 (EDT)
+method: GET
+url: /static/test.js
+params: undefined
+
+at: Sun Aug 25 2013 15:56:34 GMT-0400 (EDT)
+method: GET
+url: /static/test.html
+params: undefined
+
+at: Sun Aug 25 2013 15:56:34 GMT-0400 (EDT)
+method: GET
+url: /static/test.js
+params: undefined
+
+at: Sun Aug 25 2013 15:57:57 GMT-0400 (EDT)
+method: GET
+url: /static/test
+params: undefined
+
+at: Sun Aug 25 2013 15:57:59 GMT-0400 (EDT)
+method: GET
+url: /static/test.html
+params: undefined
+
+at: Sun Aug 25 2013 15:57:59 GMT-0400 (EDT)
+method: GET
+url: /static/javascript/test.js
+params: undefined
