@@ -89,6 +89,7 @@ img#background {
 
 div.content {
   padding-top: 7px;
+  padding-bottom: 7px;
   width: 95%;
   margin: 0 auto;
   height: 100%;

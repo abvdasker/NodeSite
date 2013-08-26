@@ -28,13 +28,11 @@ app.use(function(req, res, next) {
 // = = = = = environment configurations = = = = = 
 app.configure(function() {
   app.set('port', process.env.PORT || 8000);
-  
 	app.set('title', 'Personal Site');
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
   app.set('vew options', {
     layout: false,
-    pretty: true
   });
   
   app.use(app.router);
@@ -42,7 +40,7 @@ app.configure(function() {
 });
 
 app.configure('development', function() {
-	
+    app.locals.pretty = true;
 });
 
 app.configure('production', function() {
@@ -59,5 +57,5 @@ app.get('/', function(req, res) {
 });
 
 app.listen(app.get('port'), function() {
-  console.log("server started, listening on port "+app.get('port'));
+  console.log("server started in "+process.env.NODE_ENV+" mode, listening on port "+app.get('port'));
 });
