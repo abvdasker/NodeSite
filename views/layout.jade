@@ -1,0 +1,29 @@
+//- use blocks for templating
+//- use extends to specify template
+//- jade is awesome
+
+!!! 5
+html(lang='en')
+  head
+    | <link href='http://fonts.googleapis.com/css?family=Oxygen:400,300' rel='stylesheet' type='text/css'>
+    | <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    script(src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js")
+    //-script(src="/static/javascript/W-0.1.6.min.js")
+    //-script(src="/static/javascript/molt-2.4.3.min.js")
+    script(src="/static/javascript/clientMain.js")
+    link(type="text/css" rel="stylesheet" href="/static/style/index.css")
+    block head
+title = title
+| 
+body
+  img#background(src="static/image/Painting-Abstracts4096.jpg")
+  div#context
+    block context
+
+  table#nav
+    tr
+      td.left Blog
+      td.inner About
+      td.inner Projects
+      td.right Contact
+  block body
