@@ -12,7 +12,8 @@ console.log(logFilePath);
 
 app.use(function(req, res, next) {
 	var d = new Date();
-	var logString = "\nat: "+d+"\nmethod: "+req.method + "\nurl: "+ req.url+"\nparams: "+req.params+"\n";
+    var from = "\nfrom: "+req.connection.remoteAddress+"";
+	var logString = "\nat: "+d+" "+from+"\nmethod: "+req.method + "\nurl: "+ req.url+"\nparams: "+req.params+"\n";
 	console.log(logString);
 	fs.appendFile(logFilePath, logString, function(err) {
 		if (err)
@@ -35,6 +36,7 @@ app.configure(function() {
     layout: false,
   });
   
+  app.use(express.favicon(__dirname + '/public/image/favicon.ico'));
   app.use(app.router);
   app.use('/static', express.static(__dirname + "/public"));
 });

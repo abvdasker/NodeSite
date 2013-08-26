@@ -35,6 +35,7 @@ img#background {
   padding-bottom: 15px;
   opacity: 0.65;
   
+  -ms-transition: opacity .75s;
   -webkit-transition: opacity .75s;
   -moz-transition: opacity .75s;
   -o-transition: opacity .75s;
@@ -101,4 +102,12 @@ p:first-child {
 
 p {
     font-weight: 100;
+}
+
+.preload * {
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -ms-transition: none !important;
+  -o-transition: none !important;
+  transition: none !important;
 }
