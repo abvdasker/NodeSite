@@ -1,7 +1,6 @@
 var express = require('express');
 var fs = require('fs');
 var app = express();
-var molt = require('molt');
 
 /*app.get('/', function(req, res) {
 	res.send('hello world');
