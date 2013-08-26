@@ -97,3 +97,7 @@ div.content {
 p:first-child {
   padding-top: 0;
 }
+
+p {
+    font-weight: 100;
+}
