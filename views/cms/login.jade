@@ -1,0 +1,17 @@
+extends ../layout
+
+block head
+  link(rel='stylesheet', href='http://localhost:8000/static/style/login.css') 
+
+block main
+  div#wrapper
+    div#cms
+      div#cms_pane
+        h3 Login
+        hr
+        form#login
+          |username: 
+          input.username
+          br
+          |password: 
+          input.password

@@ -14,9 +14,6 @@ a:hover {
   text-decoration: underline;
 }
 
-body {
-}
-
 img#background {
   width: 100%;
   height: auto;
@@ -148,5 +145,5 @@ hr {
 
 .ar_date {
   display: inline-block;
-  
 }
+

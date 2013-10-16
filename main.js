@@ -54,6 +54,14 @@ app.configure('production', function() {
 * how to parameterize a route
 */
 
+app.get('/cms-login', function(req, res) {
+  res.render('cms/login.jade');
+});
+
+app.get('/index', function(req, res) {
+  res.render('index.jade');
+});
+
 app.get('/', function(req, res) {
   res.render('index.jade');
 });

@@ -1,0 +1,25 @@
+#wrapper {
+  margin: auto;
+  width: 30%;
+  height: 100%;
+  color: white;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#cms {
+  margin-top: 33%;
+  margin-bottom: auto;
+  opacity: 0.65;
+  background: black;
+}
+
+#cms_pane {
+  margin: 25px;
+  padding-top: 1px;
+  padding-bottom: 20px;
+}
+
+input {
+  margin-top: 5px;
+}
