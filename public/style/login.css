@@ -23,3 +23,15 @@
 input {
   margin-top: 5px;
 }
+
+input.button {
+  font-size: 15px;
+  width: 40%;
+  border: 0;
+  margin-top: 5%;
+}
+
+input.button:active {
+  color: white;
+  background-color: black;
+}
