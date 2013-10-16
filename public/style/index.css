@@ -5,15 +5,6 @@ html, body {
   font-weight: 300;
 }
 
-a {
-  color: #F96B6B;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
 img#background {
   width: 100%;
   height: auto;
@@ -82,6 +73,15 @@ img#background {
   width: 100%;
   height: 100%;
   margin-top: 10px;
+}
+
+.article a {
+  color: #F96B6B;
+  text-decoration: none;
+}
+
+.article a:hover {
+  text-decoration: underline;
 }
 
 #context {
