@@ -5,6 +5,15 @@ html, body {
   font-weight: 300;
 }
 
+a {
+  color: #F96B6B;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 body {
 }
 
@@ -28,6 +37,7 @@ img#background {
 }
 
 #nav td {
+  cursor: pointer;
   background: black;
   text-align: center;
   font-size: 50px;
@@ -35,11 +45,11 @@ img#background {
   padding-bottom: 15px;
   opacity: 0.65;
   
-  -ms-transition: opacity .75s;
-  -webkit-transition: opacity .75s;
-  -moz-transition: opacity .75s;
-  -o-transition: opacity .75s;
-  transition: opacity .75s;
+  -ms-transition: opacity .66s;
+  -webkit-transition: opacity .66s;
+  -moz-transition: opacity .66s;
+  -o-transition: opacity .66s;
+  transition: opacity .66s;
 }
 
 
@@ -86,9 +96,14 @@ img#background {
 #context div {
   padding-top: 7px;
   margin-right: 7px;
+  cursor: pointer;
 }
 
-div.content {
+#context div:hover {
+  text-decoration: underline;
+}
+
+div.ar_wrapper {
   padding-top: 7px;
   padding-bottom: 7px;
   width: 95%;
@@ -110,4 +125,28 @@ p {
   -ms-transition: none !important;
   -o-transition: none !important;
   transition: none !important;
+}
+
+hr {
+  border: none;
+  height: 1px;
+  background-color: white;
+}
+
+.ar_title {
+  margin-top: 10px;
+  font-size: 35px;
+  display: inline-block;
+}
+
+.ar_sep {
+  display: inline-block;
+  font-size: 30px;
+  margin-left: 35px;
+  margin-right: 35px;
+}
+
+.ar_date {
+  display: inline-block;
+  
 }
