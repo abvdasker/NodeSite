@@ -1,0 +1,6 @@
+TODO:
+
+- move to https?
+- get working authentication for CMS
+- create article models for blog
+- create basic CMS article editor
