@@ -9,11 +9,11 @@ block main
       div#cms_pane
         h3 Login
         hr
-        form#login
+        form(action="cms-login/login" method="post")#login
           |username: 
-          input.username
+          input(type="text" name="username").username
           br
           |password: 
-          input(type="password").password
+          input(type="password" name="password").password
           br
           input(type="submit" value="login").button
