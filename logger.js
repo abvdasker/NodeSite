@@ -13,7 +13,7 @@ exports.log = function(express, app, fs) {
     var method = "method: "+req.method + "\n";
     var url = "url: "+ req.url+"\n";
     var params = "params: "+req.params+"\n";
-    var body = "body: "+JSON.stringify(req.body)+"\n";
+    var body = "body: "+req.body+"\n";
     
   	var logString = at + from + method + url + params + body;
   	console.log(logString);

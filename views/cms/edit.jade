@@ -1,0 +1,10 @@
+extends ../layout
+
+block head
+
+block main
+  div#wrapper
+    div#cms
+      p You are logged in!
+      form(action="logout" method="post")
+        input(type="submit" value="logout").button

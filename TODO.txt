@@ -1,6 +1,12 @@
 TODO:
 
-- move to https?
 - get working authentication for CMS
+- move to https?
 - create article models for blog
 - create basic CMS article editor
+
+user model:
+int id
+String username
+String pass_hash
+String salt

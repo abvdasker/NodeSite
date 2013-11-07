@@ -14,6 +14,9 @@ exports.configure = function(express, app, fs) {
     
     app.use(express.favicon(__dirname + '/public/image/favicon.ico'));
     
+    app.use(express.cookieParser());
+    app.use(express.session({secret: '17bY8Pv7290bMaL31'}))
+    
     app.use(express.bodyParser());
   });
 
