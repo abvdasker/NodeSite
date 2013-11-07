@@ -1,12 +1,20 @@
-TODO:
-
-- get working authentication for CMS
-- move to https?
+BUILD:
+X create site design
+X create view structure
+X get working authentication for CMS
+- implement database users/passwords
 - create article models for blog
 - create basic CMS article editor
+- create basic CMS article history browser
+- create user article history browser
+- create title
+- create model for projects
+- create contact form
+- make background rotate 90 deg & reflect when screen shrinks
+- basic reader create comments
+- move to https?
 
-user model:
-int id
-String username
-String pass_hash
-String salt
+DEPLOYMENT:
+- get domain name
+- register domain to my ip
+- deploy site to laptop or desktop
