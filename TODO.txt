@@ -3,6 +3,7 @@ X create site design
 X create view structure
 X implement database users/passwords & crypto
 X get working authentication for CMS
+- reorganize core files
 - create article models for blog
 - create basic CMS article editor
 - create basic CMS article history browser
