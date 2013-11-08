@@ -26,7 +26,7 @@ var validate = function (username, password, f) {
   
 }
 
-var create = function (username, password) {
+var createUser = function (username, password) {
   var salt_rand = Math.random()*1000;
   var salt = hashString(salt_rand.toString()).substr(0, 8);
   console.log("SALT: "+ salt);
@@ -35,6 +35,11 @@ var create = function (username, password) {
   var query = "INSERT INTO NodeSite.users (username, password, salt) VALUES(?, ?, ?)";
   var val_ar = [username, passhash, salt];
   connection.query(query, val_ar, function(err, result) {});
+}
+
+var deleteUser = function(username) {
+  var query = "DELETE FROM NodeSite.users WHERE username=?";
+  connection.query(query, [username], function(err, rows) {});
 }
 
 var getUser = function (username, doresult) {
@@ -57,6 +62,7 @@ function hashString(str) {
 
 module.exports = {
   validate : validate,
-  create : create,
-  getUser : getUser
+  createUser : createUser,
+  getUser : getUser,
+  deleteUser : deleteUser
 }
