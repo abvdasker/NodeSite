@@ -38,14 +38,15 @@ exports.route = function(express, app) {
     var username = req.body.username;
     var password = req.body.password;
     
-    var result = users.login(username, password);
+    users.validate(username, password, function(valid) {
+      if (valid) {
+        req.session.loggedIn = true;
+        res.redirect("/cms-edit");
+      } else {
+        res.redirect("/cms-login");
+      }
+    });
     
-    if (result) {
-      req.session.loggedIn = true;
-      res.redirect("/cms-edit");
-    } else {
-      res.redirect("/cms-login");
-    }
   });
   
   app.post('/logout', function(req, res) {
