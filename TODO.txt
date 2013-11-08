@@ -11,8 +11,10 @@ X get working authentication for CMS
 - create model for projects
 - create contact form
 - make background rotate 90 deg & reflect when screen shrinks
+- make background work for long pages
 - basic reader create comments
 - move to https?
+- pick a new font
 
 DEPLOYMENT:
 - get domain name
