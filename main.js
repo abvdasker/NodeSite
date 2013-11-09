@@ -1,6 +1,7 @@
 var express = require('express');
 var fs = require('fs');
-var app = express();
+var app = express(); 
+require("./lib/mysql_init.js")();
 
 /*app.get('/', function(req, res) {
 	res.send('hello world');

@@ -1,11 +1,4 @@
-var mysql = require("mysql");
 var crypto = require("crypto");
-var connection = mysql.createConnection({
-  host : "localhost",
-  user : "hal"
-});
-connection.connect();
-connection.query("use NodeSite;");
 
 var validate = function (username, password, f) {
   
@@ -30,13 +23,13 @@ var createUser = function (username, password) {
   console.log("SALT: "+ salt);
   var passhash = hashString(password+salt);
   
-  var query = "INSERT INTO NodeSite.users (username, password, salt) VALUES(?, ?, ?)";
+  var query = "INSERT INTO users (username, password, salt) VALUES(?, ?, ?)";
   var val_ar = [username, passhash, salt];
   connection.query(query, val_ar, function(err, result) {});
 }
 
 var deleteUser = function(username) {
-  var query = "DELETE FROM NodeSite.users WHERE username=?";
+  var query = "DELETE FROM users WHERE username=?";
   connection.query(query, [username], function(err, rows) {});
 }
 

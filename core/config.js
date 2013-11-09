@@ -8,7 +8,6 @@ exports.configure = function(express, app, fs) {
   	app.set('title', 'Personal Site');
     app.set('views', __dirname + '/views');
     app.set('view engine', 'jade');
-    //app.set('views', __dirname+"/views");
     app.set('view options', {
       layout: false
     });
