@@ -1,10 +1,8 @@
-// make this OO maybe?
-
 var mysql = require("mysql");
 var crypto = require("crypto");
 var connection = mysql.createConnection({
   host : "localhost",
-  user : "hal",
+  user : "hal"
 });
 connection.connect();
 connection.query("use NodeSite;");

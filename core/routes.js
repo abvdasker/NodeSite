@@ -8,21 +8,14 @@ function authenticate(req, res, next) {
   }
 }
 
-function scopetest1() {
-  console.log("scopetest1 success");
-}
-
-function scopetest2() {
-  console.log("scopetest2 success");
-}
-
 exports.route = function(express, app) {
+
+  app.set("views", __dirname +"/../views");
   
   app.use(app.router);
-  scopetest1();
   
   // all static files!
-  app.use('/static', express.static(__dirname + "/public"));
+  app.use('/static', express.static(__dirname + "/../public"));
   
   console.log("routes loaded");
   

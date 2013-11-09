@@ -6,13 +6,13 @@ var app = express();
 	res.send('hello world');
 });*/
 
-var config = require('./config.js');
+var config = require('./core/config.js');
 config.configure(express, app, fs);
 
-var logger = require('./logger.js');
+var logger = require('./core/logger.js');
 logger.log(express, app, fs);
 
-var routes = require('./routes.js');
+var routes = require('./core/routes.js');
 routes.route(express, app);
 
 //= = = = = = = Initialize
