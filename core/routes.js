@@ -1,4 +1,6 @@
 var users = require('./users.js');
+var articles = require('./articles.js');
+var dates = require('../lib/dates.js');
 
 function authenticate(req, res, next) {
   if (req.session.loggedIn) {
@@ -52,11 +54,26 @@ exports.route = function(express, app) {
   });
 
   app.get('/index', function(req, res) {
-    res.render('index.jade');
+    res.redirect('/');
   });
 
   app.get('/', function(req, res) {
-    res.render('index.jade');
+    var today = new Date();
+    var monthago = new Date(today.getTime());
+    monthago.setMonth(monthago.getMonth() - 1);
+    console.log("monthago "+monthago);
+    console.log("today "+today);
+    articles.getFromDates(monthago, today, function(results) {
+      console.log("RESULTS: "+results+", "+results.length);
+      for (r in results) {
+        console.log(results[r]);
+      }
+      res.render('index.jade', 
+        { ar_obj : results,
+          formatDate : dates.formatDate,
+          datesEqual : dates.datesEqual
+        });
+    });
   });
 
 }

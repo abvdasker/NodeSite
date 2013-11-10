@@ -150,6 +150,7 @@ hr {
   margin-top: 10px;
   font-size: 35px;
   display: inline-block;
+  max-width: 80%;
 }
 
 .ar_sep {
@@ -163,3 +164,15 @@ hr {
   display: inline-block;
 }
 
+.ar_footer {
+  margin-top: 30px;
+  margin-bottom: 5px;
+  margin-right: 0;
+  width: 20%;
+}
+
+.updated {
+  right: 0;
+  text-align: right;
+  margin-bottom: 10px;
+}
