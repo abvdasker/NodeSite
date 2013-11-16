@@ -1,10 +1,28 @@
 extends ../layout
 
 block head
+  link(type="text/css" rel="stylesheet" href="/static/style/cms-edit.css")
 
 block main
+  div#context
+    div This is a test button
+    div Also a test button
+    div Just another test button
   div#wrapper
     div#cms
-      p You are logged in!
-      form(action="logout" method="post")
-        input(type="submit" value="logout").button
+      div#edit_main
+        div#logout
+          p You are logged in!
+          form(action="logout" method="post")
+            input(type="submit" value="logout").button
+        hr
+        div#edit
+        form(action="edit" method="post")
+          div
+            label(for="title") Title:
+            input(type="text" value="test" id="title")
+          br
+          div
+            div Content:
+            textarea(id="content" rows="30")
+        button() Preview

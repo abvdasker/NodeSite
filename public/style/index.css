@@ -176,3 +176,17 @@ hr {
   text-align: right;
   margin-bottom: 10px;
 }
+
+input.button, button {
+  width: 100px;
+  font-size: 15px;
+  border: 2px solid white;
+  color: white;
+  background-color: transparent;
+}
+
+input.button:hover, button:hover {
+  font-size: 15px;
+  background-color: white;
+  color: black;
+}

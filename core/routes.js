@@ -49,7 +49,17 @@ exports.route = function(express, app) {
     res.redirect("/cms-edit");
   });
   
+  // create route for individual articles based on id
+  
   app.get('/cms-edit', authenticate, function(req, res) {
+    // one page to find/browse articles
+      // by creation date
+      // by title
+      // search
+      // each article has a preview and an edit button
+    // list articles on the side as links
+    // a "create new article" button
+    // a logout button
     res.render("cms/edit.jade");
   });
 
