@@ -20,20 +20,23 @@
 
 #edit_main {
   margin: 30px;
+  padding-bottom: 30px;
 }
 
 #edit_main hr {
-  margin-top: 20px;
+  margin-top: 10px;
   margin-bottom: 20px;
+  width: 100%;
 }
 
 div#logout  {
-  margin-bottom: 10px;
-  padding-top: 20px;
+  padding-top: 10px;
+  width: 235px;
+  margin-left: auto;
+  margin-right: 0;
 }
 
 div#logout form {
-  float: right;
   display: inline;
 }
 
@@ -44,6 +47,6 @@ div#logout p {
 #content {
   border: none;
   margin-bottom: 15px;
-  rows: 50;
   width: 100%;
+  padding: 5px;
 }
