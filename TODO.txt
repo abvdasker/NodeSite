@@ -5,13 +5,15 @@ X implement database users/passwords & crypto
 X get working authentication for CMS
 - reorganize core files
 X create article models for blog
-X create basic CMS article editor
+- create basic CMS article editor
   X edit funcitonality
   X create functionality
-  X delete functionality
+  - delete functionality
 - create basic CMS article history browser
+  X articles by name
+  - articles by date
 - create user article history browser
-- create title
+- create banner
 - create model for projects
 - create contact form
 - make background rotate 90 deg & reflect when screen shrinks
