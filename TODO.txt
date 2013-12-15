@@ -6,6 +6,9 @@ X get working authentication for CMS
 - reorganize core files
 X create article models for blog
 X create basic CMS article editor
+  X edit funcitonality
+  X create functionality
+  X delete functionality
 - create basic CMS article history browser
 - create user article history browser
 - create title

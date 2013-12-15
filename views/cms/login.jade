@@ -9,7 +9,7 @@ block main
       div#cms_pane
         h3 Login
         hr
-        form(action="cms-login/login" method="post")#login
+        form(action="/cms/login-auth" method="post")#login
           |username: 
           input(type="text" name="username").username
           br

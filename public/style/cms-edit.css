@@ -18,6 +18,18 @@
   left: 80.5%;
 }
 
+#context a {
+  color: black;
+  text-decoration: none;
+  padding-top: 7px;
+  margin-right: 7px;
+  cursor: pointer;
+}
+
+#context a:hover {
+  text-decoration: underline;
+}
+
 #edit_main {
   margin: 30px;
   padding-bottom: 30px;
@@ -31,7 +43,7 @@
 
 div#logout  {
   padding-top: 10px;
-  width: 235px;
+  width: 240px;
   margin-left: auto;
   margin-right: 0;
 }
@@ -41,12 +53,24 @@ div#logout form {
 }
 
 div#logout p {
+  padding-right: 5px;
   display: inline;
 }
 
 #content {
   border: none;
   margin-bottom: 15px;
-  width: 100%;
+  width: 98.8%;
   padding: 5px;
+}
+#preview {
+  margin-bottom: 30px;
+}
+
+input#title {
+  margin-left: 3px;
+}
+
+#content_save {
+  float: right;
 }

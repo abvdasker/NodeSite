@@ -18,15 +18,15 @@ block main
             input(type="submit" value="Logout").button
         hr
         div#edit
-          form(action="/cms/update" method="post")
-            input(type="hidden" name="id" value=article.id)
+          form(action="/cms/create" method="post")
+            input(type="hidden" name="id")
             div
               label(for="title") Title:
-              input(type="text" name="title_str" value=article.title id="title")
+              input(type="text" name="title_str" id="title")
             br
             div
               div Content:
-              textarea(id="content" name="content_str" rows="25")!=article.article 
+              textarea(id="content" name="content_str" rows="25")
             input(type="submit" value="Save" id="content_save" class="button")
           button(onclick="previewContent()" style="width: 150px;") Update Preview 
     

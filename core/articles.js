@@ -1,12 +1,17 @@
-var createArticle = function(title, text) {
-  var query = "INSERT INTO articles (title, article) "+
-  "VALUES(?, ?)";
-  connection.query(query, [title, text]);
+var createArticle = function(title, text, f) {
+  var query = "INSERT INTO articles (title, article) VALUES(?, ?)";
+  connection.query(query, [title, text], function(err, rows) {
+    console.log("ERR: "+err);
+    f();
+  });
 }
 
-var updateArticle = function(id, text) {
-  var query = "UPDATE articles SET article=? WHERE id=?";
-  connection.query(query, [text, id]);
+var updateArticle = function(id, title, text, f) {
+  var query = "UPDATE articles SET title=?, article=? WHERE id=?";
+  connection.query(query, [title, text, id], function(err, rows) {
+    console.log("ERR: "+err);
+    f();
+  });
 }
 
 var getFromTitle = function(title, f) {
@@ -35,6 +40,42 @@ var getFromDates = function(start, end, f) {
   })
 }
 
+var getTitlesAndIds = function(f) {
+  var query = "SELECT id, title, created FROM articles ORDER BY created DESC;"
+  
+  connection.query(query, function(err, rows) {
+    console.log("ERR: "+err);
+    f(rows);
+  });
+}
+
+var getArticle = function(id, f) {
+  var query = "SELECT * FROM articles WHERE id=?;"
+  
+  connection.query(query, [id], function(err, rows) {
+    console.log("ERR: "+err);
+    f(rows);
+  });
+}
+
+var getLastArticle = function(f) {
+  var query = "SELECT * FROM articles ORDER BY created DESC LIMIT 1;"
+  
+  connection.query(query, function(err, rows) {
+    console.log("ERR: "+err);
+    f(rows);
+  });
+}
+
+var getLastUpdated = function(f) {
+  var query = "SELECT * FROM articles ORDER BY updated DESC LIMIT 1;"
+  
+  connection.query(query, function(err, rows) {
+    console.log("ERR: "+err);
+    f(rows);
+  });
+}
+
 // add method for date range of articles
 
 module.exports = {
@@ -42,5 +83,8 @@ module.exports = {
   updateArticle : updateArticle,
   getFromTitle : getFromTitle,
   getAll : getAll,
-  getFromDates : getFromDates
+  getFromDates : getFromDates,
+  getTitlesAndIds : getTitlesAndIds,
+  getArticle : getArticle,
+  getLastArticle : getLastArticle
 }

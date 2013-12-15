@@ -13,6 +13,8 @@ config.configure(express, app, fs);
 var logger = require('./core/logger.js');
 logger.log(express, app, fs);
 
+app.locals = require("./lib/dates.js");
+
 var routes = require('./core/routes.js');
 routes.route(express, app);
 

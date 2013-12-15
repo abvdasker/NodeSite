@@ -9,8 +9,8 @@ var validate = function (username, password, f) {
       var passhash = user["password"];
       var salt = user["salt"];
       var submit_hash = hashString(password+salt);
-      console.log("passhash: "+passhash+" salt: "+salt);
-      console.log("submitted: "+submit_hash);
+      //console.log("passhash: "+passhash+" salt: "+salt);
+      //console.log("submitted: "+submit_hash);
       f(passhash == submit_hash);
     }
   });
