@@ -123,7 +123,7 @@ exports.route = function(express, app) {
   app.get('/', function(req, res) {
     var today = new Date();
     var monthago = new Date(today.getTime());
-    monthago.setMonth(monthago.getMonth() - 3);
+    monthago.setMonth(monthago.getMonth() - 4);
     //console.log("monthago "+monthago);
     //console.log("today "+today);
     articles.getFromDates(monthago, today, function(results) {
