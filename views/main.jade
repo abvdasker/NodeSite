@@ -3,6 +3,20 @@ extends layout
 block head
 
 block main
+  //-div#banner
+    | <!--svg >
+    | <defs>
+    | <linearGradient id="bannerGradient" x1="0%" x2="100%" y1="0%" y2="0%">
+    | <stop stop-color="#C5A187" offset="0%"/>  
+    | <stop stop-color="#E3C74B" offset="20%"/>  
+    | <stop stop-color="#E17736" offset="40%"/>  
+    | <stop stop-color="#D0676F" offset="60%"/>  
+    | <stop stop-color="#6AB594" offset="80%"/>  
+    | <stop stop-color="#F4FACE" offset="100%"/>  
+    | </linearGradient>
+    | </defs>
+    | <text x="30" y="80" fill="url(#bannerGradient)">THE TITLE OF THE SITE</text>
+    | </svg-->
   div#context
     block context
   table#nav

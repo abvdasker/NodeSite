@@ -12,6 +12,26 @@ img#background {
   top: 0;
   left: 0;
   z-index: -999;
+  filter: blur(2px);
+  -webkit-filter: blur(2px);  
+}
+
+#banner {
+  left: 0;
+  top: 0;
+  width: 100%;
+  background: black;
+  height: 100px;
+  border-bottom: 10px solid white;
+}
+
+#banner svg {
+  width: 100%;
+}
+
+#banner text {
+  font-family: Helvetica, sans-serif;
+  font-size: 100px;
 }
 
 #nav {
