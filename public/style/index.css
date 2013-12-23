@@ -28,6 +28,11 @@ img#background {
   /*border-bottom: 20px solid white;*/
 }
 
+#nav a {
+  color: white;
+  text-decoration: none;
+}
+
 #title {
   margin-left: 20px;
   margin-top: 20px;
