@@ -2,7 +2,7 @@ html, body {
   margin: 0;
   padding: 0;
   font-family: 'Raleway', sans-serif;
-  font-weight: 300;
+  font-weight: 200;
 }
 
 img#background {
@@ -38,6 +38,9 @@ img#background {
   margin-top: 20px;
   display: inline;
   font-size: 67px;
+  font-weight: 200;
+  /*letter-spacing: -4px;
+  word-spacing: 4px;*/
 }
 
 #pages {
