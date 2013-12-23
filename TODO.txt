@@ -17,9 +17,10 @@ X create article models for blog
   - articles by id
   - articles by date
 - error page
-- create banner
+X create banner
 - create model for projects
 - create contact form
+X create about page
 - make background rotate 90 deg & reflect when screen shrinks
 - make background work for long pages
 - basic reader create comments
