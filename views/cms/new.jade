@@ -1,14 +1,6 @@
-extends ../layout
+extends cms
 
-block head
-  link(type="text/css" rel="stylesheet" href="/static/style/cms-edit.css")
-  script(src="/static/javascript/cms.js")
-
-block main
-  div#context
-    for con in context
-      div
-        a(href="/cms/article/"+con.id)=con.title
+block cms
   div#wrapper
     div#cms
       div#edit_main
@@ -22,13 +14,14 @@ block main
             input(type="hidden" name="id")
             div
               label(for="title") Title:
-              input(type="text" name="title_str" id="title")
+              input(type="text" name="title_str" id="title_input")
             br
             div
               div Content:
               textarea(id="content" name="content_str" rows="25")
             input(type="submit" value="Save" id="content_save" class="button")
           button(onclick="previewContent()" style="width: 150px;") Update Preview 
+            
     
     div#preview
       include ../_article.jade

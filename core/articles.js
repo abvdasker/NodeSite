@@ -76,6 +76,15 @@ var getLastUpdated = function(f) {
   });
 }
 
+var deleteArticle = function(id, f) {
+  var query = "DELETE FROM articles WHERE id=?;"
+  
+  connection.query(query, [id], function(err, rows) {
+    console.log("ERR: "+err);
+    f(rows);
+  });
+}
+
 // add method for date range of articles
 
 module.exports = {
@@ -86,5 +95,6 @@ module.exports = {
   getFromDates : getFromDates,
   getTitlesAndIds : getTitlesAndIds,
   getArticle : getArticle,
-  getLastArticle : getLastArticle
+  getLastArticle : getLastArticle,
+  deleteArticle : deleteArticle
 }

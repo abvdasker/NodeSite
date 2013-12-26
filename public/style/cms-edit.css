@@ -3,6 +3,7 @@
   background: black;*/
   margin-top: 35px;
   margin-bottom: 35px;
+  padding-bottom: 1px;
   background-color: rgba(0, 0, 0, 0.65);
   z-index: 100;
   width: 100%;
@@ -72,5 +73,10 @@ input#title {
 }
 
 #content_save {
+  float: right;
+}
+
+#content_delete {
+  margin-top: 15px;
   float: right;
 }

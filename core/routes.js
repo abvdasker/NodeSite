@@ -77,7 +77,7 @@ exports.route = function(express, app) {
   });
   
   app.get('/cms/article/:article_id', authenticate, function(req, res) {
-    id = req.params.article_id;
+    var id = req.params.article_id;
     articles.getTitlesAndIds(function(results1) {
       articles.getArticle(id, function(results2) {
         res.render("cms/edit.jade",
@@ -89,7 +89,14 @@ exports.route = function(express, app) {
   });
   
   app.post('/cms/article/delete', authenticate, function(req, res) {
-    //var title = 
+    var id = req.body.id;
+    
+    console.log("delete called for article " + id);
+    
+    articles.deleteArticle(id, function(rows) {
+      // redirects to newest article
+      res.redirect("/cms/article");
+    });
   });
   
   app.post("/cms/create", authenticate, function(req, res) {
@@ -97,6 +104,7 @@ exports.route = function(express, app) {
     var content = req.body.content_str;
     
     articles.createArticle(title, content, function() {
+      // redirects to newest article; the one just created
       res.redirect("/cms/article");
     });
   });

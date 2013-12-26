@@ -5,16 +5,16 @@ X implement database users/passwords & crypto
 X get working authentication for CMS
 - reorganize core files
 X create article models for blog
-- create basic CMS article editor
+X create basic CMS article editor
   X edit funcitonality
   X create functionality
-  - delete functionality
+  X delete functionality
   - handle bad article ids
 - create basic CMS article history browser
   X articles by name/id
   - articles by date
 - create user article history browser
-  - articles by id
+  - articles by name/id
   - articles by date
 - error page
 X create banner

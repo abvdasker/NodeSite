@@ -1,0 +1,12 @@
+extends ../layout
+
+block head
+  link(type="text/css" rel="stylesheet" href="/static/style/cms-edit.css")
+  script(src="/static/javascript/cms.js")
+  
+block main
+  div#context
+    for con in context
+      div
+        a(href="/cms/article/"+con.id)=con.title
+  block cms
