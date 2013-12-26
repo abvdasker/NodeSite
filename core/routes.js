@@ -18,6 +18,7 @@ function main(req, res) {
   }
 }
 
+// need to separate the response handling from the routes!!!
 exports.route = function(express, app) {
 
   app.set("views", __dirname +"/../views");
