@@ -18,6 +18,7 @@ X create basic CMS article editor
   - articles by date
 - error page
 X create banner
+- separate response handling logic from routes
 - create model for projects
 - create contact form
 X create about page
