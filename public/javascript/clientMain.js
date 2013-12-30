@@ -30,7 +30,7 @@ var ImageController = {
     
     for(var i = 0; i < widths.length; i++) {
         if (docWidth <= widths[i] || i == widths.length-1) {
-            $image.prop("src", "http://localhost:8000/static/image/Painting-Abstracts"+widths[i]+".jpg")
+            $image.prop("src", "/static/image/Painting-Abstracts"+widths[i]+".jpg")
             break;
         }
     }
