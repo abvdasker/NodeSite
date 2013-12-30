@@ -14,7 +14,6 @@ var validate = function (username, password, f) {
       f(passhash == submit_hash);
     }
   });
-  
 }
 
 var createUser = function (username, password) {

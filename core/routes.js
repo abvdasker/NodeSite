@@ -57,7 +57,12 @@ exports.route = function(express, app) {
   // create route for individual articles based on id
   app.get("/cms/article", authenticate, function(req, res) {
     articles.getLastArticle(function(results2) {
-      res.redirect("/cms/article/"+results2[0].id);
+      var a = results2[0];
+      if (typeof a.id != "undefined") {
+        res.redirect("/cms/article/"+results2[0].id);
+      } else {
+        res.redirect("/cms/article/new");
+      }
     });
   });
   
