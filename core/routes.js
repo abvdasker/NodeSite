@@ -58,7 +58,7 @@ exports.route = function(express, app) {
   app.get("/cms/article", authenticate, function(req, res) {
     articles.getLastArticle(function(results2) {
       var a = results2[0];
-      if (typeof a.id != "undefined") {
+      if (typeof a != "undefined") {
         res.redirect("/cms/article/"+results2[0].id);
       } else {
         res.redirect("/cms/article/new");
