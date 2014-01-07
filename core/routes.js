@@ -18,6 +18,26 @@ function main(req, res) {
   }
 }
 
+function respond404(req, res) {
+  res.status(404);
+  
+  // respond with html page
+  if (req.accepts('html')) {
+    res.render('static/404.html', { url: req.url });
+    return;
+  }
+
+  // respond with json
+  if (req.accepts('json')) {
+    res.send({ error: 'Not found' });
+    return;
+  }
+
+  // default to plain-text. send()
+  res.type('txt').send('Not found');
+  console.log("ERROR: 404 error on "+req.url+"!");
+}
+
 // need to separate the response handling from the routes!!!
 exports.route = function(express, app) {
 
@@ -127,6 +147,19 @@ exports.route = function(express, app) {
     articles.updateArticle(id, new_title, new_content, function() {
       req.params.article_id = id;
       res.redirect("/cms/article/"+id);
+    });
+  });
+  
+  app.get('/article/:id', function(req, res) {
+    var id = req.params.id;
+    articles.getArticle(id, function(results) {
+      if (results.length > 0) {
+        res.render("article.jade",
+        { article : results[0]
+        });
+      } else {
+        respond404(req, res);
+      }
     });
   });
 

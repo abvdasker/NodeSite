@@ -1,7 +1,8 @@
 div.article
   div.ar_wrapper
     div.ar_header
-      div.ar_title=article["title"]
+      div.ar_title
+        a(class="title_link" href="/article/"+article["id"])=article["title"]
       div.ar_sep |
       div.ar_date=formatDate(article["created"])
     hr

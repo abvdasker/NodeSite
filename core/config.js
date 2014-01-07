@@ -12,6 +12,8 @@ exports.configure = function(express, app, fs) {
       layout: false
     });
     
+    app.engine('html', require('ejs').renderFile);
+    
     app.use(express.favicon(__dirname + '/../public/image/favicon.ico'));
     
     app.use(express.cookieParser());
