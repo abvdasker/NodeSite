@@ -13,19 +13,18 @@ X create basic CMS article editor
 - create basic CMS article history browser
   X articles by name/id
   - articles by date
-- create user article history browser
-  - articles by name/id
-  - articles by date
-- error page
+X create user article history browser
+  X articles by name/id
+  X articles by date
+X error page
 X create banner
 - separate response handling logic from routes
-- create model for projects
-- create contact form
+- create model for projects (optional)
 X create about page
 - make background rotate 90 deg & reflect when screen shrinks
-- make background work for long pages
+- make background scale for long pages -- reflect?
 - basic reader create comments
-- move to https?
+- move to https? (optional)
 X pick a new font
 
 DEPLOYMENT:

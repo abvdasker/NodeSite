@@ -14,6 +14,16 @@ $(function() {
     
     $(window).resize(ImageController.resizeBackground);
     
+    $(".con_year").click(function(e){
+      $(this).children(".collapse").toggle(200);
+    });
+    
+    $(".con_month").click(function(e) {
+      $(this).children(".collapse").toggle(200);
+      return false;
+    });
+    
+    $(".con_year:first").children(".collapse").show();
 });
 
 $(window).load(function(){

@@ -97,12 +97,12 @@ a.title_link {
   margin-top: 10px;
 }
 
-.article a {
+.article a, #context a {
   color: #F96B6B;
   text-decoration: none;
 }
 
-.article a:hover {
+.article a:hover, #context a:hover {
   text-decoration: underline;
 }
 
@@ -122,8 +122,17 @@ a.title_link {
   cursor: pointer;
 }
 
-#context div:hover {
-  text-decoration: underline;
+#context > div > div {
+  margin-left: 5px;
+  text-decoration: none;
+}
+
+#context > div > div > div {
+  margin-left: 5px;
+}
+
+.collapse {
+  display: none;
 }
 
 div.ar_wrapper {

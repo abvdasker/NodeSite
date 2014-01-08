@@ -1,6 +1,6 @@
 var users = require('./users.js');
 var articles = require('./articles.js');
-//var dates = require('../lib/dates.js');
+var dates = require('../lib/dates.js');
 
 function authenticate(req, res, next) {
   if (req.session.loggedIn) {
@@ -171,14 +171,16 @@ exports.route = function(express, app) {
     var today = new Date();
     var monthago = new Date(today.getTime());
     monthago.setMonth(monthago.getMonth() - 4);
-    //console.log("monthago "+monthago);
-    //console.log("today "+today);
+    
     articles.getFromDates(monthago, today, function(results) {
+      var dateMap = dates.makeDateMap(results);
       for (r in results) {
         console.log(results[r]);
       }
+      console.log("DATE MAP: " +JSON.stringify(dateMap));
       res.render('index.jade', 
-        { ar_obj : results
+        { ar_obj : results,
+          dateMap : dateMap
         });
     });
   });

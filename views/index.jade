@@ -4,12 +4,20 @@ block head
   //-script(src="/static/javascript/test2.js")
 
 block context
-  div This is a test button
-  div Also a test button
-  div Just another test button
+  for year in Object.keys(dateMap)
+    div.con_year=year
+      for month in Object.keys(dateMap[year])
+        div.con_month.collapse=month + " ("+dateMap[year][month].length+")"
+          for ar in dateMap[year][month]
+            div.con_ar.collapse
+              a(href="/article/"+ar['id'])=ar["title"]
+            //- HOT SHIT!
+        
+  //-div This is a test button
+  //-div Also a test button
+  //-div Just another test button
 
 block body
   div#wrapper
     for article in ar_obj
       include _article.jade
-      
