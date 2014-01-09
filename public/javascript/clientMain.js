@@ -23,6 +23,10 @@ $(function() {
       return false;
     });
     
+    $(".con_month a").click(function(e) {
+      e.stopPropagation();
+    })
+    
     $(".con_year:first").children(".collapse").show();
 });
 

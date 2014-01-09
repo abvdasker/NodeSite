@@ -1,6 +1,7 @@
 var users = require('./users.js');
 var articles = require('./articles.js');
 var dates = require('../lib/dates.js');
+var querystring = require('querystring');
 
 function authenticate(req, res, next) {
   if (req.session.loggedIn) {
@@ -50,6 +51,11 @@ exports.route = function(express, app) {
   
   console.log("routes loaded");
 
+  //updates the context menu once every minute
+  articles.setContextResults();
+  setInterval(articles.setContextResults, 1000 * 60);
+
+  // how all the routes should look:
   app.get('/cms', main);
   app.get('/cms/', main);
   app.get('/cms/login', main);
@@ -153,35 +159,87 @@ exports.route = function(express, app) {
   app.get('/article/:id', function(req, res) {
     var id = req.params.id;
     articles.getArticle(id, function(results) {
+
+      var dateMap = dates.makeDateMap(articles.contextResults);
+      // need to include all articles in datemap by wrapping in call to all articles. . .
       if (results.length > 0) {
         res.render("article.jade",
-        { article : results[0]
+        { article : results[0],
+          dateMap : dateMap
         });
       } else {
         respond404(req, res);
       }
     });
   });
-
+   
+  app.get('/older/:id', function(req, res) {
+    var id = parseInt(req.params.id);
+    
+    //var older = new Date(monthPrevious.getTime() - (86400*1000));
+    // older = monthprevious - 1 day
+    
+    articles.getLastFive(id - 1, function(results) {
+      
+      if (results.length < 1) {
+        respond404(req, res);
+      } else if (results.length < 4) {
+        var dateMap = dates.makeDateMap(articles.contextResults);
+        res.render('index.jade', 
+          { ar_obj : results,
+            dateMap : dateMap,
+            older : null
+          });
+      } else {
+        results.pop(); // throw away the last result!
+        var older = results[results.length - 1]["id"];
+        var dateMap = dates.makeDateMap(articles.contextResults);
+        res.render('index.jade', 
+          { ar_obj : results,
+            dateMap : dateMap,
+            older : older
+          });
+      }
+    });
+  });
+  
+  // 1382932800000
+  // 1382932799999
+  
+  // 1382932800000
+  // 1382932800000
+  
   app.get('/index', function(req, res) {
     res.redirect('/');
   });
 
+  // just get 4 most recent articles!
   app.get('/', function(req, res) {
     var today = new Date();
-    var monthago = new Date(today.getTime());
-    monthago.setMonth(monthago.getMonth() - 4);
+    var monthAgo = new Date(today.getTime());
+    monthAgo.setMonth(monthAgo.getMonth() - 1);
     
-    articles.getFromDates(monthago, today, function(results) {
-      var dateMap = dates.makeDateMap(results);
-      for (r in results) {
-        console.log(results[r]);
+    //var older = new Date(monthAgo.getTime() - (86400*1000)); 
+    // older = monthprevious - 1 day
+    // susceptible to article overflow. . . HAHA!
+    articles.getLastFive(Number.MAX_VALUE, function(results) {
+      if (results.length > 4) {
+        var r = results.pop();
+        var older = results[results.length - 1]["id"];
+        var dateMap = dates.makeDateMap(articles.contextResults);
+        res.render('index.jade', 
+          { ar_obj : results,
+            dateMap : dateMap,
+            older : older
+          });
+      } else if (results.length > 0) {
+        var dateMap = dates.makeDateMap(articles.contextResults);
+        res.render('index.jade', 
+          { ar_obj : results,
+            dateMap : dateMap,
+            older : null
+          });
       }
-      console.log("DATE MAP: " +JSON.stringify(dateMap));
-      res.render('index.jade', 
-        { ar_obj : results,
-          dateMap : dateMap
-        });
     });
   });
   

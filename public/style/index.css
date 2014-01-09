@@ -81,7 +81,7 @@ a.title_link {
 #wrapper {
   width: 72%;
   height: 100%;
-  margin: 0 auto;
+  margin-left: 12%;
   color: white;
   margin-top: 0;
   /*padding-top: 25px;*/
@@ -113,7 +113,7 @@ a.title_link {
 #context {
   position: fixed;
   top: 25%;
-  left: 87%;
+  left: 85.33%;
 }
 
 #context div {
@@ -133,6 +133,32 @@ a.title_link {
 
 .collapse {
   display: none;
+}
+
+#older {
+  position: fixed;
+  top: 50%;
+  left: 3%;
+  font-size: 25px;
+  display: block;
+  /*cursor: pointer;*/
+}
+
+#older a {
+  color: black;
+  text-decoration: none;
+}
+
+#older a:hover {
+  color: white;
+}
+
+#older a > div {
+  display: inline;
+}
+
+#arrow {
+  font-size: 30px;
 }
 
 div.ar_wrapper {

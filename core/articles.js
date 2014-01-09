@@ -3,6 +3,7 @@ var createArticle = function(title, text, f) {
   connection.query(query, [title, text], function(err, rows) {
     console.log("ERR: "+err);
     f();
+    setContextResults();
   });
 }
 
@@ -76,12 +77,39 @@ var getLastUpdated = function(f) {
   });
 }
 
+var getLastFive = function(date, f) {
+  var query = "SELECT * FROM articles WHERE id<=? ORDER BY created DESC LIMIT 5;"
+  
+  connection.query(query, [date], function(err, rows) {
+    console.log("ERR: "+err);
+    f(rows);
+  });
+}
+
 var deleteArticle = function(id, f) {
   var query = "DELETE FROM articles WHERE id=?;"
   
   connection.query(query, [id], function(err, rows) {
     console.log("ERR: "+err);
     f(rows);
+    setContextResults();
+  });
+}
+
+// The smart way to do this would be to preprocess these results rather 
+// than querying the database with every page load.
+var getContextResults = function(f) {
+  var query = "SELECT id, title, created FROM articles ORDER BY created DESC;"
+  
+  connection.query(query, function(err, rows) {
+    console.log("ERR: "+err);
+    f(rows);
+  });
+}
+
+var setContextResults = function() {
+  getContextResults(function(context) {
+    module.exports["contextResults"] = context;
   });
 }
 
@@ -96,5 +124,7 @@ module.exports = {
   getTitlesAndIds : getTitlesAndIds,
   getArticle : getArticle,
   getLastArticle : getLastArticle,
-  deleteArticle : deleteArticle
+  deleteArticle : deleteArticle,
+  setContextResults : setContextResults,
+  getLastFive : getLastFive
 }

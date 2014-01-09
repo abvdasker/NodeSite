@@ -9,8 +9,8 @@ X create basic CMS article editor
   X edit funcitonality
   X create functionality
   X delete functionality
-  - handle bad article ids
-- create basic CMS article history browser
+  X handle bad article ids
+X create basic CMS article history browser
   X articles by name/id
   - articles by date
 X create user article history browser
