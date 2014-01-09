@@ -48,14 +48,16 @@ a.title_link {
 
 #pages {
   font-size: 20px;
-  display: inline-block;
+  display: inline;
   float: right;
   margin-top: 28px;
-  position: relative;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 #pages div {
-  display: inline;
+  display: inline-block;
   position: relative;
   margin-right: 70px;
 }

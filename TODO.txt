@@ -26,6 +26,9 @@ X create about page
 - basic reader create comments
 - move to https? (optional)
 X pick a new font
+X FIX CHROME BUG
+- TEST IE & OPERA
+- style for mobile?
 
 DEPLOYMENT:
 - get domain name

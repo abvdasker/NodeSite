@@ -1,0 +1,7 @@
+for year in Object.keys(dateMap).reverse()
+  div.con_year=year
+    for month in Object.keys(dateMap[year])
+      div.con_month.collapse=month + " ("+dateMap[year][month].length+")"
+        for ar in dateMap[year][month]
+          div.con_ar.collapse
+            a(href="/article/"+ar['id'])=ar["title"]
