@@ -19,8 +19,11 @@ X create user article history browser
 X error page
 X create banner
 - separate response handling logic from routes
-- create model for projects (optional)
 X create about page
+X create projects page
+  - create model for projects (optional)
+- create contact page
+- create model for projects (optional)
 - make background rotate 90 deg & reflect when screen shrinks
 - make background scale for long pages -- reflect?
 - basic reader create comments
