@@ -121,16 +121,23 @@ a.title_link {
 #context div {
   padding-top: 7px;
   margin-right: 7px;
+}
+
+#context .clickable {
   cursor: pointer;
 }
 
-#context > div > div {
+#context .con_month {
   margin-left: 5px;
   text-decoration: none;
 }
 
-#context > div > div > div {
+#context .con_ar {
   margin-left: 5px;
+}
+
+#context .con_ar > a {
+  
 }
 
 .collapse {
