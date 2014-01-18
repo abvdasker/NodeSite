@@ -246,5 +246,9 @@ exports.route = function(express, app) {
   app.get('/about', function(req, res) {
     res.render('about.jade');
   });
+  
+  app.get('/projects', function(req, res) {
+    res.render('projects.jade');
+  });
 
 }

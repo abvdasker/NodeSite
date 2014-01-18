@@ -1,0 +1,262 @@
+    <!DOCTYPE HTML>
+    <!-- code by Hal C. Rogers, 6/7/12-->
+    <head>
+    <script type="text/javascript"> 
+var d = new Date();
+var oldDim;
+var rendCount;
+var rendPercent;
+
+function spitter() {
+    rendPercent = 0.00/1000.00;
+    rendCount = 0;
+    drawArt();
+}
+
+function drawArt(){
+    //setInterval()
+    setInterval(animate, 34);
+}
+
+function animate() {
+    rendPercent = rendCount/30.00;
+    /*rendPercent = -0.000006*((rendCount*34.000)^2) + 0.02*((rendCount*34.000));
+    if (rendPercent < 0)
+        rendPercent = 0;
+    else if (rendPercent > 0.9995)
+        rendPercent = 1;*/
+    //y = -(x^2 + 30);
+    //y = (x+c)^2 + b
+    //y = ax^2 + bx + c
+    
+    // x is time in ms
+    // y is percent
+    // needs to be shifted to the right
+    // needs to be shifted up
+    
+    var canvas = document.getElementById("art");
+    var ctx = canvas.getContext("2d");
+
+    var dim = setDim();
+    if(dimChanged(dim)) {
+	canvas.width = dim-15;
+	canvas.height = dim-15;
+	oldDim = dim;
+    } else {
+	if (!oldDim) {
+	    oldDim = dim;
+	}
+    }
+    
+    var center = dim/2;
+    var padding = 50; // padding around current arc
+    var r = center - padding; // radius of current arc
+    
+    
+    var p_s = getp_s();   // seconds(60)
+    var p_m = getp_m(p_s);  // minutes(60)
+    var p_h = getp_h(p_m);   // hours(24)
+    var p_d = getp_d(p_h);   // days of month(28-31)
+    var p_month = getp_month(p_d); // month of year?
+    
+    if (rendPercent < 1) {
+        p_s = p_s*rendPercent;
+        p_m = p_m*rendPercent;
+        p_h = p_h*rendPercent;
+        p_d = p_d*rendPercent;
+        p_month = p_month*rendPercent;
+    }
+    
+    var colors = new Array();
+
+    ctx.clearRect ( 0 , 0 , dim , dim );
+    ctx.lineWidth = 8;
+
+    ctx.beginPath();   // seconds
+    ctx.moveTo(center, padding);
+    colors = get_colors(p_s);
+    ctx.strokeStyle = "rgb("+colors[0]+","+ colors[1]+","+ colors[2]+")";
+    ctx.arc(center, center, r, (-0.5)*Math.PI, ((2*Math.PI*p_s)-0.5*Math.PI));
+    ctx.stroke();
+
+    incr();
+
+    ctx.beginPath();   // minutes
+    ctx.moveTo(center, padding);
+    colors = get_colors(p_m);
+    ctx.strokeStyle = "rgb("+colors[0]+","+ colors[1]+","+ colors[2]+")";
+    ctx.arc(center, center, r, (-0.5)*Math.PI, ((2*Math.PI*p_m)-0.5*Math.PI));
+    ctx.stroke();
+    
+    incr();
+
+    ctx.beginPath();   // hours
+    ctx.moveTo(center, padding);
+    colors = get_colors(p_h);
+    ctx.strokeStyle = "rgb("+colors[0]+","+ colors[1]+","+ colors[2]+")";
+    ctx.arc(center, center, r, (-0.5)*Math.PI, ((2*Math.PI*p_h)-0.5*Math.PI));
+    ctx.stroke();
+    
+    incr();
+
+    ctx.beginPath();   // days of month
+    ctx.moveTo(center, padding);
+    colors = get_colors(p_d);
+    ctx.strokeStyle = "rgb("+colors[0]+","+ colors[1]+","+ colors[2]+")";
+    ctx.arc(center, center, r, (-0.5)*Math.PI, ((2*Math.PI*p_d)-0.5*Math.PI));
+    ctx.stroke();
+    
+    incr();
+    
+    ctx.beginPath();
+    ctx.moveTo(center, padding);
+    colors = get_colors(p_month);
+    ctx.strokeStyle = "rgb("+colors[0]+","+ colors[1]+","+ colors[2]+")";
+    ctx.arc(center, center, r, (-0.5)*Math.PI, ((2*Math.PI*p_month)-0.5*Math.PI));
+    ctx.stroke();
+    
+    ctx.beginPath();
+    /*
+     *create function to get string width
+     **/
+    ctx.fillStyle = "black";
+    ctx.font = "15px Helvetica";
+    
+    var seconds = Math.round(p_s*59);
+    var minutes = Math.round(p_m*59);
+    var hours = Math.round(p_h*23);
+    var ms = (new Date()).getMilliseconds();
+    var p_ms = ms/999;
+    var milliseconds = Math.round(p_ms*100);
+    
+    ctx.fillText(hours + ":"+minutes+":"+seconds+":"+milliseconds, center +"", center+"");
+    
+    if (rendPercent <= 1)
+        rendCount++;
+    
+    
+    function incr() {   // updates for next arc
+        padding += 25;
+        r = center - padding;
+    }
+
+    function dimChanged(newDim) {
+	if (oldDim) {
+	    return true;
+	} else {
+	    if (oldDim != newDim)
+		return true;
+	    else
+		return false;
+	}
+    }
+}
+
+function setDim() {   // finds lesser dimenstion
+    var x = window.innerWidth;
+    var y = window.innerHeight;
+    var dim;
+    if (x < y) {
+        dim = x;
+    } else {
+        dim = y;
+    }
+    return dim;
+}
+
+/*
+ * begin cascading calculations p ranges from 0 to 1; polar p
+ */
+function getp_month(p_d){   // months of year
+    var d = (new Date()).getMonth();
+    var month = d + 1*p_d;
+    return month/12;
+}
+
+function getp_d(p_h) {  // days of month
+    var d = (new Date()).getDate();
+    var m = (new Date()).getMonth();
+    var p;
+    switch(m) {
+    case 0: case 2: case 4: case 6: case 7: case 9: case 11:
+        p = (d-1 + 1*p_h)/31.00
+	break;
+    case 3: case 5: case 8: case 10:
+	p = (d-1 + 1*p_h)/30.0000;
+	break;
+    case 1:
+	var c = (new Date()).getFullYear();
+	if(c % 400 == 0){
+	    p = (d-1 + 1*p_h)/29.0000;
+	    break;
+	}
+	if(c% 100 == 0){
+	    p= (d-1 + 1*p_h)/28.0000;
+	    break;
+	}
+	if(c % 4 == 0){
+	    p = (d-1 + 1*p_h)/29.0000;
+	    break;
+	}
+	p=(d-1 + 1*p_h)/28.0000;
+	break;
+    default:
+	break;
+    }
+    return p;
+}
+
+function getp_h(p_m) {  // hours of day
+    var h = (new Date()).getHours() + 1*p_m;
+    return h/24.0000;
+}
+
+function getp_m(p_s) { // minutes of hour
+    var m = (new Date()).getMinutes() + 1*p_s;
+    return m/60.0000;
+}
+
+function getp_s() {  // seconds of mintue
+    var ms = (new Date()).getMilliseconds();
+    var p_ms = ms/999;
+    var s = (new Date()).getSeconds() + 1*p_ms;
+    return (s)/60.0000;
+}
+
+/*
+ * end cascading calculations
+ */
+
+/*
+ * being color function
+ */
+
+function get_colors(p) {   // color function based on p; awesome
+    var phase1 = 0;
+    var phase2 = 2;
+    var phase3 = 4;
+
+    var center = 128;
+    var width = 127;
+
+    var r = Math.sin(2*Math.PI*p + phase1)*width + center;
+    var g = Math.sin(2*Math.PI*p + phase2)*width + center;
+    var b = Math.sin(2*Math.PI*p + phase3)*width + center;
+
+    //alert(r+", "+b+", "+g);
+    var a = new Array(Math.round(r), Math.round(g), Math.round(b));
+    return a;
+}
+
+/*
+ * end color function
+ */
+
+window.onload=spitter;
+</script>
+</head>
+    <body>
+    <canvas id="art">
+    </canvas>
+    </body>
+</html>

@@ -102,13 +102,16 @@ var getContextResults = function(f) {
   var query = "SELECT id, title, created FROM articles ORDER BY created DESC;"
   
   connection.query(query, function(err, rows) {
-    console.log("ERR: "+err);
+    if (err != null) {
+      console.log("ERR: "+err);
+    }
     f(rows);
   });
 }
 
 var setContextResults = function() {
   getContextResults(function(context) {
+    console.log("updated context menu");
     module.exports["contextResults"] = context;
   });
 }
