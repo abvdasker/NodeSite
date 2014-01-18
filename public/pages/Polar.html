@@ -10,16 +10,30 @@ var rendPercent;
 function spitter() {
     rendPercent = 0.00/1000.00;
     rendCount = 0;
+    
+    window.requestAnimFrame = (function(){
+      return  window.requestAnimationFrame       ||
+              window.webkitRequestAnimationFrame ||
+              window.mozRequestAnimationFrame    ||
+              window.oRequestAnimationFrame      ||
+              window.msRequestAnimationFrame     ||
+              function( callback ) {
+                window.setTimeout(callback, 1000 / 60);
+              };
+    })();
+    window.requestAnimFrame(drawArt);
     drawArt();
 }
 
 function drawArt(){
+    animate();
+    window.requestAnimFrame(drawArt);
     //setInterval()
-    setInterval(animate, 34);
+    //setInterval(animate, 34);
 }
 
 function animate() {
-    rendPercent = rendCount/30.00;
+    rendPercent = rendCount/120.00;
     /*rendPercent = -0.000006*((rendCount*34.000)^2) + 0.02*((rendCount*34.000));
     if (rendPercent < 0)
         rendPercent = 0;
@@ -70,7 +84,7 @@ function animate() {
     var colors = new Array();
 
     ctx.clearRect ( 0 , 0 , dim , dim );
-    ctx.lineWidth = 8;
+    ctx.lineWidth = 10;
 
     ctx.beginPath();   // seconds
     ctx.moveTo(center, padding);

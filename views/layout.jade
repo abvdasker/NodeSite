@@ -3,7 +3,6 @@
 //- use includes to invert control for partials
 //- jade is awesome
 
-!!! 5
 doctype html
 html(lang='en')
   head
@@ -16,5 +15,7 @@ html(lang='en')
 title= title
 | 
 body.preload
-  img#background
+  img.background.first
+  img.background.second
+  img.background.third
   block main

@@ -5,7 +5,7 @@ html, body {
   font-weight: 200;
 }
 
-img#background {
+img.background {
   width: 100%;
   height: auto;
   position: fixed;
@@ -13,6 +13,30 @@ img#background {
   left: 0;
   z-index: -999;
 }
+
+img.background.second {
+  display: none;
+}
+
+img.background.third {
+  display: none;
+}
+
+/*img.background.second {
+  -moz-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  transform: scaleX(-1);
+  -ms-filter: fliph; 
+  filter: fliph; 
+  
+  -moz-transform: scaleY(-1);
+  -webkit-transform: scaleY(-1);
+  -o-transform: scaleY(-1);
+  transform: scaleY(-1);
+  -ms-filter: flipv; 
+  filter: flipv; 
+}*/
 
 #nav {
   z-index: 100;
@@ -95,7 +119,7 @@ a.title_link {
   background-color: rgba(0, 0, 0, 0.65);
   z-index: 100;
   width: 100%;
-  height: 100%;
+  /*height: 100%;*/
   margin-top: 10px;
 }
 
@@ -110,6 +134,18 @@ a.title_link {
 
 .article img {
   width: 100%;
+}
+
+.article img.floater, .article img.floater.left {
+  float: left;
+  width: auto;
+  margin-right: 2%;
+}
+
+.article img.floater.right {
+  float: left;
+  width: auto;
+  margin-left: 2%;
 }
 
 #context {
@@ -175,7 +211,7 @@ div.ar_wrapper {
   padding-bottom: 7px;
   width: 95%;
   margin: 0 auto;
-  height: 100%;
+  /*height: 100%;*/
 }
 
 p:first-child {
@@ -183,7 +219,7 @@ p:first-child {
 }
 
 p {
-    font-weight: 300;
+    font-weight: 200;
 }
 
 .preload * {

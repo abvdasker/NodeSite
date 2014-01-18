@@ -32,6 +32,7 @@ X pick a new font
 X FIX CHROME BUG
 - TEST IE & OPERA
 - style for mobile?
+- minify for production
 
 DEPLOYMENT:
 - get domain name
