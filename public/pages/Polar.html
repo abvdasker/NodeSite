@@ -7,6 +7,71 @@ var oldDim;
 var rendCount;
 var rendPercent;
 
+var P = {
+  /*
+   * begin cascading calculations p ranges from 0 to 1; polar p
+   */
+  getp_month : function(p_d){   // months of year
+      var d = (new Date()).getMonth();
+      var month = d + 1*p_d;
+      return month/12;
+  },
+
+  getp_d : function(p_h) {  // days of month
+      var d = (new Date()).getDate();
+      var m = (new Date()).getMonth();
+      var p;
+      switch(m) {
+      case 0: case 2: case 4: case 6: case 7: case 9: case 11:
+          p = (d-1 + 1*p_h)/31.00
+  	break;
+      case 3: case 5: case 8: case 10:
+  	p = (d-1 + 1*p_h)/30.0000;
+  	break;
+      case 1:
+  	var c = (new Date()).getFullYear();
+  	if(c % 400 == 0){
+  	    p = (d-1 + 1*p_h)/29.0000;
+  	    break;
+  	}
+  	if(c% 100 == 0){
+  	    p= (d-1 + 1*p_h)/28.0000;
+  	    break;
+  	}
+  	if(c % 4 == 0){
+  	    p = (d-1 + 1*p_h)/29.0000;
+  	    break;
+  	}
+  	p=(d-1 + 1*p_h)/28.0000;
+  	break;
+      default:
+  	break;
+      }
+      return p;
+  },
+
+  getp_h : function(p_m) {  // hours of day
+      var h = (new Date()).getHours() + 1*p_m;
+      return h/24.0000;
+  },
+
+  getp_m : function(p_s) { // minutes of hour
+      var m = (new Date()).getMinutes() + 1*p_s;
+      return m/60.0000;
+  },
+
+  getp_s : function() {  // seconds of mintue
+      var ms = (new Date()).getMilliseconds();
+      var p_ms = ms/999;
+      var s = (new Date()).getSeconds() + 1*p_ms;
+      return (s)/60.0000;
+  }
+
+  /*
+   * end cascading calculations
+   */
+}
+
 function spitter() {
     rendPercent = 0.00/1000.00;
     rendCount = 0;
@@ -53,13 +118,13 @@ function animate() {
 
     var dim = setDim();
     if(dimChanged(dim)) {
-	canvas.width = dim-15;
-	canvas.height = dim-15;
-	oldDim = dim;
-    } else {
-	if (!oldDim) {
+	    canvas.width = dim-15;
+	    canvas.height = dim-15;
 	    oldDim = dim;
-	}
+    } else {
+	    if (!oldDim) {
+	      oldDim = dim;
+	    }
     }
     
     var center = dim/2;
@@ -67,11 +132,11 @@ function animate() {
     var r = center - padding; // radius of current arc
     
     
-    var p_s = getp_s();   // seconds(60)
-    var p_m = getp_m(p_s);  // minutes(60)
-    var p_h = getp_h(p_m);   // hours(24)
-    var p_d = getp_d(p_h);   // days of month(28-31)
-    var p_month = getp_month(p_d); // month of year?
+    var p_s = P.getp_s();   // seconds(60)
+    var p_m = P.getp_m(p_s);  // minutes(60)
+    var p_h = P.getp_h(p_m);   // hours(24)
+    var p_d = P.getp_d(p_h);   // days of month(28-31)
+    var p_month = P.getp_month(p_d); // month of year?
     
     if (rendPercent < 1) {
         p_s = p_s*rendPercent;
@@ -155,14 +220,14 @@ function animate() {
     }
 
     function dimChanged(newDim) {
-	if (oldDim) {
-	    return true;
-	} else {
-	    if (oldDim != newDim)
-		return true;
-	    else
-		return false;
-	}
+	    if (oldDim) {
+	      return true;
+	    } else {
+	      if (oldDim != newDim)
+		      return true;
+	      else
+		      return false;
+	    }
     }
 }
 
@@ -179,70 +244,7 @@ function setDim() {   // finds lesser dimenstion
 }
 
 /*
- * begin cascading calculations p ranges from 0 to 1; polar p
- */
-function getp_month(p_d){   // months of year
-    var d = (new Date()).getMonth();
-    var month = d + 1*p_d;
-    return month/12;
-}
-
-function getp_d(p_h) {  // days of month
-    var d = (new Date()).getDate();
-    var m = (new Date()).getMonth();
-    var p;
-    switch(m) {
-    case 0: case 2: case 4: case 6: case 7: case 9: case 11:
-        p = (d-1 + 1*p_h)/31.00
-	break;
-    case 3: case 5: case 8: case 10:
-	p = (d-1 + 1*p_h)/30.0000;
-	break;
-    case 1:
-	var c = (new Date()).getFullYear();
-	if(c % 400 == 0){
-	    p = (d-1 + 1*p_h)/29.0000;
-	    break;
-	}
-	if(c% 100 == 0){
-	    p= (d-1 + 1*p_h)/28.0000;
-	    break;
-	}
-	if(c % 4 == 0){
-	    p = (d-1 + 1*p_h)/29.0000;
-	    break;
-	}
-	p=(d-1 + 1*p_h)/28.0000;
-	break;
-    default:
-	break;
-    }
-    return p;
-}
-
-function getp_h(p_m) {  // hours of day
-    var h = (new Date()).getHours() + 1*p_m;
-    return h/24.0000;
-}
-
-function getp_m(p_s) { // minutes of hour
-    var m = (new Date()).getMinutes() + 1*p_s;
-    return m/60.0000;
-}
-
-function getp_s() {  // seconds of mintue
-    var ms = (new Date()).getMilliseconds();
-    var p_ms = ms/999;
-    var s = (new Date()).getSeconds() + 1*p_ms;
-    return (s)/60.0000;
-}
-
-/*
- * end cascading calculations
- */
-
-/*
- * being color function
+ * begin color function
  */
 
 function get_colors(p) {   // color function based on p; awesome
