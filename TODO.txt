@@ -3,7 +3,6 @@ X create site design
 X create view structure
 X implement database users/passwords & crypto
 X get working authentication for CMS
-- reorganize core files
 X create article models for blog
 X create basic CMS article editor
   X edit funcitonality
@@ -18,23 +17,27 @@ X create user article history browser
   X articles by date
 X error page
 X create banner
-- separate response handling logic from routes
 X create about page
 X create projects page
-  - create model for projects (optional)
-- create contact page
-- create model for projects (optional)
-- make background rotate 90 deg & reflect when screen shrinks
-- make background scale for long pages -- reflect?
-- basic reader create comments
-- move to https? (optional)
+X create contact page
+- Fix background
+  - make a gradient + blur background image
+  - make multiple sizes that will scale so multiple image hack is not necessary!
 X pick a new font
 X FIX CHROME BUG
 - TEST IE & OPERA
-- style for mobile?
-- minify for production
 
 DEPLOYMENT:
 - get domain name
 - register domain to my ip
 - deploy site to laptop or desktop
+
+ONGOING:
+- separate response handling logic from routes
+- move to https?
+- style for mobile?
+- create model for projects
+- create model for projects
+- basic reader create comments
+- minify for production
+- reorganize core files
