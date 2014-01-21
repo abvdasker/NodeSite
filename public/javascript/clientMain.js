@@ -1,7 +1,7 @@
 $(function() {
     // parallax
     ImageController.init();
-    ImageController.adjustBackground();
+    
     var $window = $(window);
     /*$window.scroll(function() {
         var yPos = -($window.scrollTop() / bodySpeed);
@@ -56,6 +56,8 @@ var ImageController = {
   docWidth : null,
   widths : null,
   $background : null,
+  imageStr : null,
+  dirty : true,
   
   init : function() {
     $window = $(window);
@@ -65,50 +67,34 @@ var ImageController = {
   },
   
   parallax : function() {
+        if (this.dirty) {
+          $background.prop("src", this.imageStr); 
+          this.dirty = false;
+        }
         var bodySpeed = 8.5;
-        $window
         var yPos = -($window.scrollTop() / bodySpeed);
         var coords = yPos;  
         $background.css({top: coords});
-        /*if (this.$background2 != null) {
-          //alert("!");
-          $background2.css({top : (coords + $background.prop("height")) });
-        }*/
         window.requestAnimFrame(ImageController.parallax);
-  },
-  
-  adjustBackground : function() {
-    var $image = $background;
-    
-    for(var i = 0; i < widths.length; i++) {
-        if (docWidth <= widths[i] || i == widths.length-1) {
-            $image.prop("src", "/static/image/Painting-Abstracts"+widths[i]+".jpg");
-            break;
-        }
-    }
   },
   
   resizeBackground : function() {
     var docWidth = $window.width();
-    //var docHeight = $window.height();
-    //var scrollHeight = $("body")[0].scrollHeight;
-    var $image = $background
-    
-    if (docWidth < 820) {      
-      $image.prop("src", "http://localhost:8000/static/image/Painting-Abstracts"+720+".jpg");
-    } else if (docWidth < 1124) {      
-      $image.prop("src", "http://localhost:8000/static/image/Painting-Abstracts"+1024+".jpg");  
-    } else if (docWidth < 1300) {      
-      $image.prop("src", "http://localhost:8000/static/image/Painting-Abstracts"+1920+".jpg");
-    } else if (docWidth < 4196) {      
-      $image.prop("src", "http://localhost:8000/static/image/Painting-Abstracts"+4096+".jpg");
+    var s;
+    if (docWidth < 820) {
+      s = "/static/image/Painting-Abstracts"+720+".jpg";
+    } else if (docWidth < 1124) {         
+      s = "/static/image/Painting-Abstracts"+1024+".jpg";
+    } else if (docWidth < 2020) {          
+      s = "/static/image/Painting-Abstracts"+1920+".jpg";
+    } else if (docWidth < 4196) {          
+      s = "/static/image/Painting-Abstracts"+4096+".jpg";
     }
-    /*alert("image height: " + $image[0].scrollHeight);
-    if (scrollHeight > $image.prop("height") && this.$background2 == null) {
-      alert("second image");
-      $background2 = $(".background.second");
-      $background2.prop("src", $image.attr("src"));
-    }*/
+    
+    if (s != this.imageStr) {
+      this.imageStr = s;
+      dirty = true;
+    }
     
   },
   

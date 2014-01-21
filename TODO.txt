@@ -26,6 +26,7 @@ X create contact page
 X pick a new font
 X FIX CHROME BUG
 - TEST IE & OPERA
+- add Google Analytics
 
 DEPLOYMENT:
 - get domain name
