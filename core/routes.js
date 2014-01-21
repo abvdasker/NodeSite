@@ -36,7 +36,7 @@ function respond404(req, res) {
 
   // default to plain-text. send()
   res.type('txt').send('Not found');
-  console.log("ERROR: 404 error on "+req.url+"!");
+  console.log("ERROR: 404 error on "+req.url+"");
 }
 
 // need to separate the response handling from the routes!!!
@@ -249,6 +249,14 @@ exports.route = function(express, app) {
   
   app.get('/projects', function(req, res) {
     res.render('projects.jade');
+  });
+  
+  app.get('/contact', function(req, res) {
+    res.render('contact.jade');
+  });
+  
+  app.use(function(req, res) {
+    respond404(req, res);
   });
 
 }

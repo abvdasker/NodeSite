@@ -1,0 +1,73 @@
+.con_wrapper {
+  padding-top: 75px;
+  padding-bottom: 75px;
+  width: 100%;
+}
+
+
+.article.contact_wrapper {
+  margin-top: 13%;
+}
+
+table {
+  width: 88%;
+  margin-left: 6%;
+}
+
+td {
+  width: 33.33%;
+  height: 100px;
+  position: relative;
+  text-align: center;
+}
+
+div.container {
+  position: relative;
+}
+
+.container a:hover {
+  text-decoration: none;
+}
+
+div.container .str {
+  font-size: 25px;
+  display: none;
+}
+
+#email .str > a {
+  color: #6AB594;
+}
+
+#facebook .str > a {
+  color: rgb(133, 155, 220);
+}
+
+#linkedin .str > a {
+  color: #D0676F;
+}
+
+div.container:hover .str {
+  display: block;
+}
+
+div.container .icon:before {
+  font-family: "FontAwesome";
+  font-size: 90px;
+  display: block;
+}
+
+div.container:hover .icon:before {
+  display: none;
+}
+
+#email .icon:before {
+  content: "\f0e0";
+}
+
+#facebook .icon:before {
+  content: "\f082";
+}
+
+#linkedin .icon:before {
+  content: "\f08c";
+}
