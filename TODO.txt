@@ -27,7 +27,7 @@ X pick a new font
 X FIX CHROME BUG
 X TEST IE & OPERA
 - add Google Analytics
-- website name
+X website name
 
 DEPLOYMENT:
 - get domain name
