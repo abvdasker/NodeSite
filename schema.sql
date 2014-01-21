@@ -27,7 +27,7 @@ CREATE TABLE `articles` (
   `title` varchar(100) NOT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `article` text NOT NULL,
-  `updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated` timestamp NOT NULL,
   UNIQUE KEY `id` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;

@@ -1,5 +1,5 @@
 var createArticle = function(title, text, f) {
-  var query = "INSERT INTO articles (title, article) VALUES(?, ?)";
+  var query = "INSERT INTO articles (title, article, created, updated) VALUES(?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)";
   connection.query(query, [title, text], function(err, rows) {
     console.log("ERR: "+err);
     f();
@@ -8,7 +8,7 @@ var createArticle = function(title, text, f) {
 }
 
 var updateArticle = function(id, title, text, f) {
-  var query = "UPDATE articles SET title=?, article=? WHERE id=?";
+  var query = "UPDATE articles SET title=?, article=?, updated=CURRENT_TIMESTAMP WHERE id=?";
   connection.query(query, [title, text, id], function(err, rows) {
     console.log("ERR: "+err);
     f();
