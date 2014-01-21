@@ -33,6 +33,7 @@ DEPLOYMENT:
 - deploy site to laptop or desktop
 
 ONGOING:
+- index database
 - separate response handling logic from routes
 - move to https?
 - style for mobile?
