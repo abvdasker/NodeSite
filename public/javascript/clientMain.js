@@ -8,8 +8,9 @@ $(function() {
         var coords = yPos +'px'  
         $image.css({top: coords});
     });*/
-    ImageController.resizeBackground();
-    $window.resize(ImageController.resizeBackground);
+    var r = ImageController.resizeBackground;
+    $window.resize(r);
+    r();
     
     $(".con_year").click(function(e){
       $(this).children(".collapse").toggle(200);
@@ -55,15 +56,12 @@ var ImageController = {
   docWidth : null,
   widths : null,
   $background : null,
-  //$background2 : null,
-  //$background3 : null,
-  
   
   init : function() {
     $window = $(window);
     docWidth = $window.width();
     widths = [1060, 1280, 1920, 4096, 5600];
-    $background = $(".background:first");
+    $background = $("#background");
   },
   
   parallax : function() {
@@ -92,17 +90,18 @@ var ImageController = {
   
   resizeBackground : function() {
     var docWidth = $window.width();
-    var docHeight = $window.height();
-    var scrollHeight = $("body")[0].scrollHeight;
-    var m = ImageController.isMobile();
-    
+    //var docHeight = $window.height();
+    //var scrollHeight = $("body")[0].scrollHeight;
     var $image = $background
-    if (docWidth < 1060 && !m) {
-      $image.prop("src", "http://localhost:8000/static/image/Painting-Abstracts"+1060+".jpg");
-    }
     
-    if (docWidth >= 1060 && m) {
-      $image.prop("src", "http://localhost:8000/static/image/Painting-Abstracts"+1280+".jpg");
+    if (docWidth < 820) {      
+      $image.prop("src", "http://localhost:8000/static/image/Painting-Abstracts"+720+".jpg");
+    } else if (docWidth < 1124) {      
+      $image.prop("src", "http://localhost:8000/static/image/Painting-Abstracts"+1024+".jpg");  
+    } else if (docWidth < 1300) {      
+      $image.prop("src", "http://localhost:8000/static/image/Painting-Abstracts"+1920+".jpg");
+    } else if (docWidth < 4196) {      
+      $image.prop("src", "http://localhost:8000/static/image/Painting-Abstracts"+4096+".jpg");
     }
     /*alert("image height: " + $image[0].scrollHeight);
     if (scrollHeight > $image.prop("height") && this.$background2 == null) {
