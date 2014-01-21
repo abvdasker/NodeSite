@@ -5,6 +5,10 @@ html, body {
   font-weight: 200;
 }
 
+body {
+  background-color: rgb(236, 238, 203);
+}
+
 img#background {
   width: 100%;
   height: auto;

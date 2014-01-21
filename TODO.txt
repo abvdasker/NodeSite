@@ -20,13 +20,14 @@ X create banner
 X create about page
 X create projects page
 X create contact page
-- Fix background
-  - make a gradient + blur background image
-  - make multiple sizes that will scale so multiple image hack is not necessary!
+X Fix background
+  X make a gradient + blur background image
+  X make multiple sizes that will scale so multiple image hack is not necessary!
 X pick a new font
 X FIX CHROME BUG
-- TEST IE & OPERA
+X TEST IE & OPERA
 - add Google Analytics
+- website name
 
 DEPLOYMENT:
 - get domain name

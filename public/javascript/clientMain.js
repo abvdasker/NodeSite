@@ -81,11 +81,11 @@ var ImageController = {
   resizeBackground : function() {
     var docWidth = $window.width();
     var s;
-    if (docWidth < 820) {
-      s = "/static/image/Painting-Abstracts"+720+".jpg";
-    } else if (docWidth < 1124) {         
+    if (docWidth < 1124) {         
       s = "/static/image/Painting-Abstracts"+1024+".jpg";
-    } else if (docWidth < 2020) {          
+    } else if (docWidth < 1380) {
+      s = "/static/image/Painting-Abstracts"+1280+".jpg";
+    }else if (docWidth < 2020) {          
       s = "/static/image/Painting-Abstracts"+1920+".jpg";
     } else if (docWidth < 4196) {          
       s = "/static/image/Painting-Abstracts"+4096+".jpg";
