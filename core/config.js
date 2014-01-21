@@ -4,7 +4,6 @@ exports.configure = function(express, app, fs) {
   // = = = = = environment configurations = = = = = 
   app.configure(function() {
     
-    app.set('port', process.env.PORT || 8000);
   	app.set('title', 'Personal Site');
     app.set('views', __dirname + '/views');
     app.set('view engine', 'jade');
@@ -24,10 +23,11 @@ exports.configure = function(express, app, fs) {
 
   app.configure('development', function() {
       app.locals.pretty = true;
+      app.set('port', process.env.PORT || 8000);
   });
 
   app.configure('production', function() {
-	
+    app.set('port', process.env.PORT || 80);
   });
   // = = = = = = = = = = = = = = = 
 

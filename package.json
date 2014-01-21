@@ -7,6 +7,7 @@
 		"express" : "3.x",
     "mysql" : "x",
     "jade" : "x",
-    "ejs" : "x"
+    "ejs" : "x",
+    "forever" : "x"
 	}
 }
