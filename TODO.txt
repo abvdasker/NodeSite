@@ -26,8 +26,9 @@ X Fix background
 X pick a new font
 X FIX CHROME BUG
 X TEST IE & OPERA
+- website name + domain
+- fix navigator appearance bug
 - add Google Analytics
-- website name
 
 DEPLOYMENT:
 - get domain name

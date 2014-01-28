@@ -27,11 +27,6 @@ $(function() {
     
     $(".con_year:first").children(".collapse").show();
     
-    
-    $("img.background:first").load(function(){
-      
-    });
-    
     window.requestAnimFrame = (function(){
       return  window.requestAnimationFrame       ||
               window.webkitRequestAnimationFrame ||
