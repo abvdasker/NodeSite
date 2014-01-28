@@ -8,9 +8,28 @@ var rendCount;
 var rendPercent;
 
 var P = {
+
   /*
    * begin cascading calculations p ranges from 0 to 1; polar p
    */
+
+  getp_s : function() {  // seconds of mintue
+      var ms = (new Date()).getMilliseconds();
+      var p_ms = ms/999;
+      var s = (new Date()).getSeconds() + 1*p_ms;
+      return (s)/60.0000;
+  },
+
+  getp_m : function(p_s) { // minutes of hour
+      var m = (new Date()).getMinutes() + 1*p_s;
+      return m/60.0000;
+  },
+
+  getp_h : function(p_m) {  // hours of day
+      var h = (new Date()).getHours() + 1*p_m;
+      return h/24.0000;
+  },
+  
   getp_month : function(p_d){   // months of year
       var d = (new Date()).getMonth();
       var month = d + 1*p_d;
@@ -48,23 +67,6 @@ var P = {
   	break;
       }
       return p;
-  },
-
-  getp_h : function(p_m) {  // hours of day
-      var h = (new Date()).getHours() + 1*p_m;
-      return h/24.0000;
-  },
-
-  getp_m : function(p_s) { // minutes of hour
-      var m = (new Date()).getMinutes() + 1*p_s;
-      return m/60.0000;
-  },
-
-  getp_s : function() {  // seconds of mintue
-      var ms = (new Date()).getMilliseconds();
-      var p_ms = ms/999;
-      var s = (new Date()).getSeconds() + 1*p_ms;
-      return (s)/60.0000;
   }
 
   /*
@@ -97,20 +99,6 @@ function drawArt(){
 
 function animate() {
     rendPercent = rendCount/120.00;
-    /*rendPercent = -0.000006*((rendCount*34.000)^2) + 0.02*((rendCount*34.000));
-    if (rendPercent < 0)
-        rendPercent = 0;
-    else if (rendPercent > 0.9995)
-        rendPercent = 1;*/
-    //y = -(x^2 + 30);
-    //y = (x+c)^2 + b
-    //y = ax^2 + bx + c
-    
-    // x is time in ms
-    // y is percent
-    // needs to be shifted to the right
-    // needs to be shifted up
-    
     var canvas = document.getElementById("art");
     var ctx = canvas.getContext("2d");
 
@@ -199,12 +187,12 @@ function animate() {
     ctx.fillStyle = "black";
     ctx.font = "15px Helvetica";
     
-    var seconds = Math.round(p_s*59);
-    var minutes = Math.round(p_m*59);
-    var hours = Math.round(p_h*23);
+    var seconds = Math.floor(p_s*60);
+    var minutes = Math.floor(p_m*60);
+    var hours = Math.floor(p_h*24);
     var ms = (new Date()).getMilliseconds();
-    var p_ms = ms/999;
-    var milliseconds = Math.round(p_ms*100);
+    var p_ms = ms/1000;
+    var milliseconds = Math.floor(p_ms*100);
     
     ctx.fillText(hours + ":"+minutes+":"+seconds+":"+milliseconds, center +"", center+"");
     
