@@ -26,7 +26,8 @@ X Fix background
 X pick a new font
 X FIX CHROME BUG
 X TEST IE & OPERA
-- website name + domain
+X website name + domain
+- add TOAD logo
 - fix navigator appearance bug
 - add Google Analytics
 
