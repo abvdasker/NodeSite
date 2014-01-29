@@ -203,12 +203,6 @@ exports.route = function(express, app) {
     });
   });
   
-  // 1382932800000
-  // 1382932799999
-  
-  // 1382932800000
-  // 1382932800000
-  
   app.get('/index', function(req, res) {
     res.redirect('/');
   });
@@ -219,9 +213,6 @@ exports.route = function(express, app) {
     var monthAgo = new Date(today.getTime());
     monthAgo.setMonth(monthAgo.getMonth() - 1);
     
-    //var older = new Date(monthAgo.getTime() - (86400*1000)); 
-    // older = monthprevious - 1 day
-    // susceptible to article overflow. . . HAHA!
     articles.getLastFive(Number.MAX_VALUE, function(results) {
       if (results.length > 4) {
         var r = results.pop();
@@ -244,15 +235,15 @@ exports.route = function(express, app) {
   });
   
   app.get('/about', function(req, res) {
-    res.render('about.jade');
+    res.render('about.jade', {page_class : 'about'});
   });
   
   app.get('/projects', function(req, res) {
-    res.render('projects.jade');
+    res.render('projects.jade', {page_class : 'projects'});
   });
   
   app.get('/contact', function(req, res) {
-    res.render('contact.jade');
+    res.render('contact.jade', {page_class : 'contact'});
   });
   
   app.use(function(req, res) {

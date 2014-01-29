@@ -54,17 +54,20 @@ a.title_link {
 #title {
   margin-left: 20px;
   display: inline;
-  font-size: 67px;
+  font-size: 90px;
   font-weight: 200;
   line-height: 90px;
-  /*letter-spacing: -4px;
-  word-spacing: 4px;*/
+  margin-left: 12.5%;
 }
 
 #title:before {
   content: "\e600";
   font-family: "icomoon";
   margin-right: 6%;
+  position: absolute;
+  left:2%;
+  top: 4px;
+  font-size: 78px;
 }
 
 #pages {
@@ -281,3 +284,18 @@ input.button:hover, button:hover {
   background-color: white;
   color: black;
 }
+
+.about .content div:first-child:before {
+  content: "\e601";
+  font-family: "icomoon";
+  float: right;
+  font-size: 120px;
+  margin-top: 42px;
+  height: 120px;
+  margin-left: 5px;
+}
+
+/*.about .content div {
+  padding-top: 17px;
+  padding-bottom: 17px;
+}*/
