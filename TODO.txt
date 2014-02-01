@@ -27,16 +27,17 @@ X pick a new font
 X FIX CHROME BUG
 X TEST IE & OPERA
 X website name + domain
-- add TOAD logo
+X add TOAD logo
 - fix navigator appearance bug
-- add Google Analytics
+X add Google Analytics
 
 DEPLOYMENT:
-- get domain name
-- register domain to my ip
-- deploy site to laptop or desktop
+X get domain name
+X register domain to my ip
+X deploy site to dedicated server
 
 ONGOING:
+- compress images more
 - index database
 - separate response handling logic from routes
 - move to https?
