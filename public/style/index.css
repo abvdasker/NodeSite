@@ -51,7 +51,7 @@ a.title_link {
   text-decoration: none !important;
 }
 
-#title {
+#title div {
   margin-left: 20px;
   display: inline;
   font-size: 90px;
@@ -59,6 +59,29 @@ a.title_link {
   line-height: 90px;
   margin-left: 12.5%;
 }
+
+@media screen and (min-width: 1024px) {
+  #title div.mobile {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1023px) and (min-width: 820px) {
+  #title div.full {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 819px) {
+  #title div {
+    display: none;
+  }
+  
+  #nav {
+    height: 90px;
+  }
+}
+
 
 #title:before {
   content: "\e600";
@@ -74,7 +97,7 @@ a.title_link {
   font-size: 20px;
   display: inline;
   float: right;
-  margin-top: 2.75%;
+  margin-top: 36px;
   position: absolute;
   top: 0;
   right: 0;

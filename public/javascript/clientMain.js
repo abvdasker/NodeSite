@@ -23,10 +23,11 @@ $(function() {
     
     $(".con_month a").click(function(e) {
       e.stopPropagation();
-    })
+    });
     
     $(".con_year:first").children(".collapse").show();
     
+    // silky smooth but ultimately more expensive.
     window.requestAnimFrame = (function(){
       return  window.requestAnimationFrame       ||
               window.webkitRequestAnimationFrame ||
