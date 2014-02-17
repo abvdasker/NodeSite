@@ -1,7 +1,7 @@
 var express = require('express');
 var fs = require('fs');
 
-var privateKey = fs.readFileSync('./new.key').toString();
+var privateKey = fs.readFileSync('./toadwork.key').toString();
 console.log("key");
 var certificate = fs.readFileSync('./toadwork.crt').toString();
 console.log("cert");
