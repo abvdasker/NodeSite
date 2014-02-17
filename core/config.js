@@ -10,7 +10,7 @@ exports.configure = function(express, app, fs) {
     app.set('view options', {
       layout: false
     });
-    
+  
     app.engine('html', require('ejs').renderFile);
     
     app.use(express.favicon(__dirname + '/../public/image/favicon.ico'));
@@ -22,12 +22,14 @@ exports.configure = function(express, app, fs) {
   });
 
   app.configure('development', function() {
-      app.locals.pretty = true;
-      app.set('port', process.env.PORT || 8000);
+    app.locals.pretty = true;
+    //app.set('port', process.env.PORT || 8000);
+    app.set('domain', 'localhost');
   });
 
   app.configure('production', function() {
-    app.set('port', process.env.PORT || 443);
+    //app.set('port', process.env.PORT || 443);
+    app.set('domain', 'toadwork.com');
   });
   // = = = = = = = = = = = = = = = 
 
