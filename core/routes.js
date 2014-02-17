@@ -176,9 +176,6 @@ exports.route = function(express, app) {
   app.get('/older/:id', function(req, res) {
     var id = parseInt(req.params.id);
     
-    //var older = new Date(monthPrevious.getTime() - (86400*1000));
-    // older = monthprevious - 1 day
-    
     articles.getLastFive(id - 1, function(results) {
       
       if (results.length < 1) {

@@ -27,7 +27,7 @@ exports.configure = function(express, app, fs) {
   });
 
   app.configure('production', function() {
-    app.set('port', process.env.PORT || 80);
+    app.set('port', process.env.PORT || 443);
   });
   // = = = = = = = = = = = = = = = 
 
