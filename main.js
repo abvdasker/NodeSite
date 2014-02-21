@@ -46,4 +46,4 @@ var httpsServer = https.createServer(credentials, app);
 });*/
 
 httpServer.listen(80);
-httpsServer.listen(443);>>>>>>> External Changes
+httpsServer.listen(443);
