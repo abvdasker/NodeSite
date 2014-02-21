@@ -1,10 +1,17 @@
+console.log("NODE_ENV: "+process.env.NODE_ENV);
+
 var express = require('express');
 var fs = require('fs');
 
-var privateKey = fs.readFileSync('./toadwork.key').toString();
-console.log("key");
-var certificate = fs.readFileSync('./toadwork.crt').toString();
-console.log("cert");
+// should go in config file
+if (process.env.NODE_ENV == "production") {
+  var privateKey = fs.readFileSync('./toadwork.key').toString();
+  var certificate = fs.readFileSync('./toadwork.crt').toString();
+} else {
+  var privateKey = fs.readFileSync('./key.pem').toString();
+  var certificate = fs.readFileSync('./key-cert.pem').toString();
+}
+
 var credentials = {key: privateKey, cert: certificate};
 
 require("./lib/mysql_init.js")();
@@ -39,4 +46,4 @@ var httpsServer = https.createServer(credentials, app);
 });*/
 
 httpServer.listen(80);
-httpsServer.listen(443);
+httpsServer.listen(443);>>>>>>> External Changes
