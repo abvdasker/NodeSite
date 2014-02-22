@@ -10,6 +10,8 @@ exports.configure = function(express, app, fs) {
     app.set('view options', {
       layout: false
     });
+    
+    app.set('port', 8000);
   
     app.engine('html', require('ejs').renderFile);
     

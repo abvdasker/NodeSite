@@ -3,17 +3,6 @@ console.log("NODE_ENV: "+process.env.NODE_ENV);
 var express = require('express');
 var fs = require('fs');
 
-// should go in config file
-if (process.env.NODE_ENV == "production") {
-  var privateKey = fs.readFileSync('./toadwork.key').toString();
-  var certificate = fs.readFileSync('./toadwork.crt').toString();
-} else {
-  var privateKey = fs.readFileSync('./key.pem').toString();
-  var certificate = fs.readFileSync('./key-cert.pem').toString();
-}
-
-var credentials = {key: privateKey, cert: certificate};
-
 require("./lib/mysql_init.js")();
 var app = express(); 
 
@@ -28,22 +17,11 @@ app.locals = require("./lib/dates.js");
 var routes = require('./core/routes.js');
 routes.route(express, app);
 
-//var http = require('http');
-
-var httpServer = express();
-httpServer.get('*', function(req, res) {
-  res.redirect('https://'+app.get('domain')+req.url);
-});
-//app.use(requireHTTPS);
-
-//var httpServer = http.createServer(app);
-var https = require('https');
-var httpsServer = https.createServer(credentials, app);
-
 //= = = = = = = Initialize
 /*app.listen(app.get('port'), function() {
   console.log("server started in "+process.env.NODE_ENV+" mode, listening on port "+app.get('port'));
 });*/
 
-httpServer.listen(80);
-httpsServer.listen(443);
+app.listen(app.get('port'), function() {
+  console.log("server started in "+process.env.NODE_ENV+" mode, listening on port "+app.get('port'));
+});
