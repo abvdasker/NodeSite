@@ -37,13 +37,12 @@ X register domain to my ip
 X deploy site to dedicated server
 
 ONGOING:
-- PUT EVERYTHING BEHIND NGINX
+X PUT EVERYTHING BEHIND NGINX
 - compress images more
 - index database
 - separate response handling logic from routes
 X move to https?
 - style for mobile?
-- create model for projects
 - create model for projects
 - basic reader create comments
 - minify for production
