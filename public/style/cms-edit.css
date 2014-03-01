@@ -72,6 +72,10 @@ input#title {
   margin-left: 3px;
 }
 
+input#title_input {
+  width: 40%;
+}
+
 #content_save {
   float: right;
 }

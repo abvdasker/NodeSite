@@ -51,6 +51,10 @@ a.title_link {
   text-decoration: none !important;
 }
 
+#title {
+  display: inline;
+}
+
 #title div {
   margin-left: 20px;
   display: inline;
@@ -86,16 +90,16 @@ a.title_link {
   }
 }
 
-
 #title:before {
   content: "\e600";
   font-family: "icomoon";
   margin-right: 6%;
   position: absolute;
-  left:2%;
-  top: 4px;
+  left: 2%;
+  top: 6px;
   font-size: 78px;
 }
+
 
 #pages {
   font-size: 20px;
