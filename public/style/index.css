@@ -60,6 +60,10 @@ a.title_link {
   margin-left: 12.5%;
 }
 
+#title {
+  display: inline;
+}
+
 @media screen and (min-width: 1024px) {
   #title div.mobile {
     display: none;

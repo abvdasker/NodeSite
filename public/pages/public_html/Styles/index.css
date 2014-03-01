@@ -1,0 +1,308 @@
+/* 
+    Document   : index
+    Created on : Dec 27, 2012, 5:50:50 PM
+    Author     : halrogers
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+html { overflow-y: scroll; }
+
+root { 
+    display: block;
+}
+
+#sub_button {
+    margin-top: 8px;
+    display: none;
+    font-weight: bold;
+}
+
+@media only screen and (min-width: 551px) {
+    #sub_button{
+        font-size: xx-large;
+        width: 50%;
+    }
+    
+    input {
+        width: 50%;
+    }
+    
+    textarea {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 550px) {
+    #sub_button{
+        font-size: x-large;
+        width: 100%;
+    }
+    
+    input {
+        width: 100%;
+        height: 2em;
+    }
+    
+    textarea {
+        width: 100%;
+    }
+}
+
+input {
+    border: white;
+    background-color: white;
+}
+
+textarea {
+    resize: none;
+    border: none;
+}
+
+/*#content {
+    width: 86%;
+    height: 100%;
+    position: absolute;
+}*/
+#content {
+    position: absolute;
+    width: 94%;
+    font-family: sans-serif;
+    color: white;
+    right: 3%;
+    padding-bottom: 1%;
+}
+
+@media only screen and (min-width: 1280px) {
+    #content {
+        padding-top: 5.4%;
+    }
+}
+
+@media only screen and (max-width: 1279px) and (min-width: 780px) {
+    #content {
+        padding-top: 6.5%;
+    }
+}
+
+@media only screen and (max-width: 779px) {
+    #content {
+        padding-top: 23%;
+    }
+}
+
+#background {
+    top:0px;
+    left:0px;
+    position: fixed;
+    
+    width: 100%;
+    height: 0%;
+    z-index: -9000;
+}
+
+#background.collapse {
+    animation: collapseAnim;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    height: 0%;
+}
+
+#background.expand {
+    animation: expandAnim;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    height: 100%;
+}
+
+body {
+    /*background-color: white;*/
+}
+
+p {
+    right: 0px;
+    z-index: -200;
+}
+
+img.pro_img{
+    display: none;
+    border-style: solid;
+    border-color: white;
+    border-width: 3px;
+    /*margin-left: 70%;*/
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+
+.icon img{
+   width: 90%;
+   height: auto;
+}
+
+#menubar {
+    background-color: white;
+    z-index: 50;
+    top:0px;
+    left:0px;
+    position: fixed;
+    width: 100%;
+}
+
+#menubar div.button{
+    display: inline-block;
+    float: left;
+    cursor: pointer;
+    padding:0px;
+    width: 24.625%;
+    margin-left: .25%;
+    margin-right: .25%;
+    margin-bottom: .50%;
+    overflow: hidden;
+    text-align: left;
+    color: white;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+.brokenButton {
+    vertical-align: bottom;
+}
+
+@media only screen and (min-width: 1280px) {
+    .fullButton{
+        display: block;
+    }
+    .brokenButton {
+        display: none;
+    }
+    .icon {
+        display: none;
+    }
+    #menubar div.button{
+        line-height: 69%;
+    }
+}
+
+@media only screen and (max-width: 1279px) and (min-width: 780px) {
+    .fullButton{
+        display: none;
+    }
+    .brokenButton {
+        display: block;
+    }
+    .icon {
+        display: none;
+    }
+    
+    #menubar div.button{
+        line-height: 71%;
+    }
+}
+
+@media only screen and (max-width: 779px) {
+    .fullButton{
+        display: none;
+    }
+    .brokenButton {
+        display: none;
+    }
+    .icon {
+        display: block;
+    }
+    
+    #menubar div.button {
+        line-height: 70%;
+    }
+    
+}
+
+@media only screen and (min-width: 569px) {
+    /*.skillhor {
+        display: block;
+    }*/
+    
+    .skillvert {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 568px) {
+    
+    .skillhor {
+        display: none;
+    }
+    
+    /*.skillvert {
+        display: block;
+    }*/
+}
+
+#menubar div.button.first {
+    border-left-width: 0px;
+    margin-left:0px;
+}
+
+#menubar div.button.last {
+    border-right-width: 0px;
+    margin-right:0px;
+}
+
+hr {
+    border-style: none;
+    background-color: white;
+    width:0%;
+    margin-left:0%;
+    /*width: 85%;*/
+}
+
+hr.bigDiv {
+    /*margin-right: 7.5%;*/
+    height: 6px;
+}
+
+hr.littleDiv {
+    /*margin-right: 17.5%;*/
+    height: 1px;
+}
+
+#edu {
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+#skilltable {
+    border-spacing: 0px;
+    width: 85%;
+    padding-left: 0px;
+}
+
+#skilltable td {
+    vertical-align: top;
+    padding-right: 50px;
+}
+
+#menubar #about {
+    background-color: #018883;
+    /*background-image: linear-gradient( to right, #00a09d 0%,#00b5b2 100%);*/
+    /*background: linear-gradient(to right, #00a09d 0%,#00b5b2 100%);*/
+}
+
+#menubar #contact {
+    background-color: #81cf02;
+}
+
+#menubar #experience {
+    background-color: #ba015c;
+}
+
+#menubar #projects {
+    background-color: #e16502;
+}
+
+a {
+    color: white;
+}
+
+a:visited {
+    font-weight: bolder;
+}

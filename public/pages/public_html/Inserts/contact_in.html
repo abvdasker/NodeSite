@@ -1,0 +1,26 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <h1 id="head">Contact Me</h1>
+        <hr class ="bigDiv" />
+        <br>
+        <div>
+            <form id="mail_form" action="http://www3.amherst.edu/cgi-bin/cgiemail/~hrogers13/submit.temp" method="post">
+                Your Email: <br><input id="mail" type="text" name="sender"><br>
+                Subject: <br><input id="subject" type="text" name="subj"><br>
+                Message: <br>
+                <textarea id="textbox" name="msg" rows ="15" cols="40"></textarea><br>
+                <input id="sub_button" type="submit" name="Submit" value="SEND">
+				<INPUT TYPE="hidden" NAME="success" VALUE="http://www3.amherst.edu/~hrogers13/success.html">
+            </form>
+        </div>
+    </body>
+</html>
