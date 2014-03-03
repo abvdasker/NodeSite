@@ -162,19 +162,25 @@ a.title_link {
   text-decoration: underline;
 }
 
+.ar_wrapper {
+  height: 1%; overflow: hidden;
+}
+
 .article img {
   width: 100%;
 }
 
+.article img.floater {
+  width: 20%;
+}
+
 .article img.floater, .article img.floater.left {
   float: left;
-  width: auto;
   margin-right: 2%;
 }
 
 .article img.floater.right {
-  float: left;
-  width: auto;
+  float: right;
   margin-left: 2%;
 }
 
