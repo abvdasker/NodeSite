@@ -3,4 +3,6 @@ extends layout
 block head
 
 block content
-  div#content
+  div#content    
+    for article in ar_obj
+      include _article_block.jade
