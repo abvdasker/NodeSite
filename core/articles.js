@@ -1,15 +1,15 @@
-var createArticle = function(title, text, f) {
-  var query = "INSERT INTO articles (title, article, created, updated) VALUES(?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)";
-  connection.query(query, [title, text], function(err, rows) {
+var createArticle = function(title, text, image_url, f) {
+  var query = "INSERT INTO articles (title, article, image_url, created, updated) VALUES(?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)";
+  connection.query(query, [title, text, image_url], function(err, rows) {
     console.log("ERR: "+err);
     f();
     setContextResults();
   });
 }
 
-var updateArticle = function(id, title, text, f) {
-  var query = "UPDATE articles SET title=?, article=?, updated=CURRENT_TIMESTAMP WHERE id=?";
-  connection.query(query, [title, text, id], function(err, rows) {
+var updateArticle = function(id, title, text, image_url, f) {
+  var query = "UPDATE articles SET title=?, article=?, image_url=?, updated=CURRENT_TIMESTAMP WHERE id=?";
+  connection.query(query, [title, text, image_url, id], function(err, rows) {
     console.log("ERR: "+err);
     f();
   });

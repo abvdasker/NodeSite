@@ -1,18 +1,6 @@
-extends main
+extends layout
 
 block head
 
-block context
-  include _context_history.jade
-
-block older_block
-  if (older != null)
-    div#older
-      a(href="/older/"+older)
-        div#arrow &laquo; 
-        div older
-
-block body
-  div#wrapper
-    for article in ar_obj
-      include _article.jade
+block content
+  div#content

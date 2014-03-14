@@ -13,11 +13,14 @@ html(lang='en')
     | <meta name="ROBOTS" content="INDEX, FOLLOW"> 
     script(src='/static/javascript/analytics.js')
     script(src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js")
-    script(src="/static/javascript/clientMain.js")
-    link(type="text/css" rel="stylesheet" href="/static/style/index.css")
+    //- script(src="/static/javascript/clientMain.js")
+    link(type="text/css" rel="stylesheet" href="/static/style/index2.css")
     title toad/work
-    block head_ext
+    block head
+    //-block head_ext
     
-body.preload
-  img#background
-  block main
+body
+  div#lcol
+    include side.jade
+  div#rcol
+    block content

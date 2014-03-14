@@ -134,8 +134,9 @@ exports.route = function(express, app) {
   app.post("/cms/create", authenticate, function(req, res) {
     var title = req.body.title_str;
     var content = req.body.content_str;
+    var image_url = req.body.image_url;
     
-    articles.createArticle(title, content, function() {
+    articles.createArticle(title, content, image_url, function() {
       // redirects to newest article; the one just created
       res.redirect("/cms/article");
     });
@@ -148,9 +149,10 @@ exports.route = function(express, app) {
     var new_title = req.body.title_str;
     console.log(new_title);
     var new_content = req.body.content_str;
-    console.log(id);
+    var image_url = req.body.image_url;
+    console.log(image_url);
     
-    articles.updateArticle(id, new_title, new_content, function() {
+    articles.updateArticle(id, new_title, new_content, image_url, function() {
       req.params.article_id = id;
       res.redirect("/cms/article/"+id);
     });
@@ -206,28 +208,11 @@ exports.route = function(express, app) {
 
   // just get 4 most recent articles!
   app.get('/', function(req, res) {
-    var today = new Date();
-    var monthAgo = new Date(today.getTime());
-    monthAgo.setMonth(monthAgo.getMonth() - 1);
     
     articles.getLastFive(Number.MAX_VALUE, function(results) {
-      if (results.length > 4) {
-        var r = results.pop();
-        var older = results[results.length - 1]["id"];
-        var dateMap = dates.makeDateMap(articles.contextResults);
-        res.render('index.jade', 
-          { ar_obj : results,
-            dateMap : dateMap,
-            older : older
-          });
-      } else if (results.length > 0) {
-        var dateMap = dates.makeDateMap(articles.contextResults);
-        res.render('index.jade', 
-          { ar_obj : results,
-            dateMap : dateMap,
-            older : null
-          });
-      }
+      res.render('index.jade', 
+        { ar_obj : results
+        });
     });
   });
   
