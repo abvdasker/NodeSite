@@ -1,0 +1,19 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+#lcol {
+  width: 25%;
+  position: fixed;
+  height: 100%;
+  left:0;
+  top:0;
+  background: grey;
+  color: white;
+}
+
+#rcol {
+  margin-left: 25%;
+  padding-left: 2%;
+}
