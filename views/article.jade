@@ -7,6 +7,6 @@ block body
         img(src=article['image_url'])
         div#ar_title=article["title"]
         div#ar_date=formatDate(article["created"])
-    div#content!=article.article
+    div#ar_content!=article.article
     if (!datesEqual(article["created"], article["updated"]))
       div.updated=formatDate(article["updated"])
