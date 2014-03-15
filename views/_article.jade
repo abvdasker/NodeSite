@@ -1,4 +1,9 @@
 div.article
+  div#hero
+    div#ar_title=article["title"]
+    div#ar_date=formatDate(article["created"])
+  div#content!=article.article
+
   div.ar_wrapper
     div.ar_header
       div.ar_title

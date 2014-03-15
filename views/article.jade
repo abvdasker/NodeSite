@@ -1,8 +1,12 @@
-extends main
+extends layout
 
-block context
-  include _context_history.jade
-
-block body  
-  div#wrapper
-    include _article.jade
+block body
+  div#article
+    div#hero
+      div
+        img(src=article['image_url'])
+        div#ar_title=article["title"]
+        div#ar_date=formatDate(article["created"])
+    div#content!=article.article
+    if (!datesEqual(article["created"], article["updated"]))
+      div.updated=formatDate(article["updated"])

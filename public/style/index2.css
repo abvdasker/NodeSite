@@ -163,3 +163,26 @@ div.ar_info div.ar_title {
   color: white;
   text-decoration: none;
 }
+
+#article {
+  position: relative;
+  height: 100%;
+}
+
+/*This is gonna have to be javascript
+*/
+#hero {
+  height: 50%;
+}
+
+#hero > div {
+  position: absoute;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+}
+
+#hero > div > img {
+  width: 100%;
+  margin-top: -16%;
+}

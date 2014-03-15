@@ -17,10 +17,8 @@ html(lang='en')
     link(type="text/css" rel="stylesheet" href="/static/style/index2.css")
     title toad/work
     block head
+    link(type="text/css" rel="stylesheet" href="/static/style/logo.css")
     //-block head_ext
     
 body
-  div#lcol
-    include side.jade
-  div#rcol
-    block content
+  block body
