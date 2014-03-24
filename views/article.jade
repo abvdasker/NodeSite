@@ -1,8 +1,9 @@
 extends main
 
 block context
+  - context_offset = true
   include _context_history.jade
 
 block body  
-  div#wrapper
+  div#wrapper.offset
     include _article.jade
