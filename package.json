@@ -4,10 +4,15 @@
 	"version" : "0.0.1",
 	"private" : false,
 	"dependencies" : {
-		"express" : "3.x",
+		"express" : "4.x",
     "mysql" : "x",
     "jade" : "x",
     "ejs" : "x",
-    "forever" : "x"
+    "forever" : "x",
+    "body-parser" : "x",
+    "cookie-parser" : "x",
+    "serve-favicon" : "x",
+    "express-session" : "x",
+    "morgan" : "x"
 	}
 }

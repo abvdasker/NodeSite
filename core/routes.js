@@ -40,21 +40,12 @@ function respond404(req, res) {
 }
 
 // need to separate the response handling from the routes!!!
-exports.route = function(express, app) {
-
-  app.set("views", __dirname +"/../views");
-  
-  app.use(app.router);
-  
-  // all static files!
-  app.use('/static', express.static(__dirname + "/../public"));
-  
-  console.log("routes loaded");
-
+exports.route = function(app) {
   //updates the context menu once every minute
+  
   articles.setContextResults();
   setInterval(articles.setContextResults, 1000 * 60);
-
+  
   // how all the routes should look:
   app.get('/cms', main);
   app.get('/cms/', main);
@@ -143,14 +134,10 @@ exports.route = function(express, app) {
   });
   
   app.post("/cms/update", authenticate, function(req, res) {
-    console.log("UPDATE CALLED");
     var id = req.body.id;
-    console.log(id);
     var new_title = req.body.title_str;
-    console.log(new_title);
     var new_content = req.body.content_str;
     var image_url = req.body.image_url;
-    console.log(image_url);
     
     articles.updateArticle(id, new_title, new_content, image_url, function() {
       req.params.article_id = id;
@@ -231,5 +218,5 @@ exports.route = function(express, app) {
   app.use(function(req, res) {
     respond404(req, res);
   });
-
+  console.log("routes loaded");
 }
