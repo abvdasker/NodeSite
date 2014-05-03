@@ -26,9 +26,11 @@ var respond404 = function(req, res) {
 
 var cms_main = function(req, res) {
   if (req.session.loggedIn) {
+    console.log("logged in");
     res.redirect("/cms/article");
   } else {
-    res.render('cms/login.jade');
+    console.log("not logged in");
+    res.render('cms/login');
   }
 }
 

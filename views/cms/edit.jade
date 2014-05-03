@@ -1,34 +1,29 @@
 extends cms
 
 block cms
-  div#wrapper
-    div#cms
-      div#edit_main
-        div#logout
-          p You are logged in!
-          form(action="/cms/logout" method="post")
-            input(type="submit" value="Logout").button
-        hr
-        div#edit
-          form(action="/cms/update" method="post")
-            input(type="hidden" name="id" value=article.id)
-            div
-              label(for="title") Title:
-              input(type="text" name="title_str" value=article.title id="title_input")
-            div
-              label(for="image_url") Aticle Image:
-              input(type="text" name="image_url" value=article.image_url id="image_input")
-            br
-            div
-              div Content:
-              textarea(id="content" name="content_str" rows="25")!=article.article 
-            input(type="submit" value="Save" id="content_save" class="button")
-          button(onclick="previewContent()" style="width: 150px;") Update Preview 
-        div#delete
-          form(action="/cms/article/delete" method="post")
-            input(type="hidden" name="id" value=article.id)
-            div
-              input(type="submit" value="Delete" id="content_delete" class="button")
-    
-    div#preview
-      include ../_article.jade
+  div#logout
+    div You are logged in!
+    form(action="/cms/logout" method="post")
+      input(type="submit" value="Logout").button
+  div#edit
+    form(action="/cms/update" method="post")
+      input(type="hidden" name="id" value=article.id)
+      div.input_set
+        label(for="title") Title:
+        input(type="text" name="title_str" value=article.title id="title_input")
+      div.input_set
+        label(for="image_url") Aticle Image:
+        input(type="text" name="image_url" value=article.image_url id="image_input")
+      br
+      div
+        div Content:
+        textarea(id="content_input" name="content_str" rows="25")!=article.article 
+      input(type="submit" value="Save" id="content_save" class="button")
+    button(onclick="previewContent()" style="width: 150px;") Update Preview 
+    div#delete
+      form(action="/cms/article/delete" method="post")
+        input(type="hidden" name="id" value=article.id)
+        div
+          input(type="submit" value="Delete" id="content_delete" class="button")
+  div#preview
+    include ../_article.jade

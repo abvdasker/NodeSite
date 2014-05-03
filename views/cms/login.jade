@@ -1,19 +1,14 @@
-extends ../layout
+extends ./cms 
 
-block head
-  //-link(rel='stylesheet', href='/static/style/login.css') 
-
-block content
-  div#wrapper
-    div#cms
-      div#cms_pane
-        h3 Login
-        hr
-        form(action="/cms/login-auth" method="post")#login
-          |username: 
-          input(type="text" name="username").username
-          br
-          |password: 
-          input(type="password" name="password").password
-          br
-          input(type="submit" value="login").button
+block cms
+  div#login_wrapper
+    h3 Login
+    hr
+    form(action="/cms/login-auth" method="post")#login
+      |username: 
+      input(type="text" name="username").username
+      br
+      |password: 
+      input(type="password" name="password").password
+      br
+      input(type="submit" value="login").button
