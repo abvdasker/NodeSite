@@ -43,7 +43,7 @@ exports.configure = function(express, app, fs) {
     app.set('domain', 'localhost');
   } else if (env == "production") {
     
-    var output = fs.createWriteStream(__dirname + "/../log/log.txt");
+    var output = fs.createWriteStream(__dirname + "/../log/log.txt", {flags:"a"});
     
     app.use(morgan({
       stream : output,
