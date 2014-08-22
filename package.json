@@ -8,6 +8,10 @@
     "mysql" : "x",
     "jade" : "x",
     "ejs" : "x",
-    "forever" : "x"
+    "forever" : "x",
+    "body-parser" : "x",
+    "express-session" : "x",
+    "cookie-parser" : "x",
+    "server-favicon" : "x"
 	}
 }
