@@ -1,9 +1,22 @@
-for year in Object.keys(dateMap).reverse()
-  div.con_year
-    div.clickable=year
-    for month in Object.keys(dateMap[year])
-      div.con_month.collapse
-        div.clickable=month + " ("+dateMap[year][month].length+")"
-        for ar in dateMap[year][month]
-          div.con_ar.collapse
-            a(href="/article/"+ar['id'])=ar["title"]
+if context_offset
+  div#context.offset
+    for year in Object.keys(dateMap).reverse()
+      div.con_year
+        div.clickable=year
+        for month in Object.keys(dateMap[year])
+          div.con_month.collapse
+            div.clickable=month + " ("+dateMap[year][month].length+")"
+            for ar in dateMap[year][month]
+              div.con_ar.collapse
+                a(href="/article/"+ar['id'])=ar["title"]
+else
+  div#context
+    for year in Object.keys(dateMap).reverse()
+      div.con_year
+        div.clickable=year
+        for month in Object.keys(dateMap[year])
+          div.con_month.collapse
+            div.clickable=month + " ("+dateMap[year][month].length+")"
+            for ar in dateMap[year][month]
+              div.con_ar.collapse
+                a(href="/article/"+ar['id'])=ar["title"]

@@ -1,0 +1,16 @@
+/* 
+    Document   : mobile_index
+    Created on : Jan 26, 2013, 10:10:17 PM
+    Author     : Hal
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+#background {
+    color: black;
+}
+

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+
+<!-- code by Hal C. Rogers using jQuery 1.8.3-->
+<!-- work in progress; code needs cleaning, restructuring -->
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="Styles/index.css">
+        <!--link rel="stylesheet" type="text/css" href="Styles/index.css" media="only screen and (min-width: 720px)">
+        <link rel="stylesheet" type="text/css" href="Styles/mobile_index.css" media="only screen and (max-width: 719px)"-->
+        <script src="Res/Scripts/jquery_d.js"></script>
+        <script src="Res/Scripts/jquery_easing.js"></script>
+        <script type="text/javascript">
+            var URLprefix = "./Inserts/";   // change this if starting outside of IDE
+            var hexes = "0123456789ABCDEF".split("");
+            var width;
+            var height;
+            var rolledUp = true;
+            var gotContent = false;
+            var animating = false;
+            var first = true;
+            var lastElem;
+            var hasSetFont = false;
+            //var bigNode;  // comment out if going back to original
+            
+            function init() {
+                width = window.innerWidth;
+                height = window.innerHeight;
+                //alert("width: "+width+", height: "+height);
+                adjustFont();
+                $(window).resize(adjustFont);
+                /*var table = $("#sidebar");
+                var d = $(document).height(); for extended bar w/ random cells
+                
+                var cell = $("td").height();
+                
+                randomCellExtend(cell, table, d);*/
+        
+                function adjustFont() {
+                    width = window.innerWidth;
+                    if (width < 1280 && hasSetFont) {
+                        return;
+                    } else if (width < 1280 && !hasSetFont) {
+                        updateFont(1500);
+                    } else {
+                        updateFont(width);
+                        hasSetFont = false;
+                    }
+                    
+                    function updateFont(w) {
+                        var fsize = 0.0371*w;
+                        $(".button").css("font-size", fsize +"px");
+                        hasSetFont = true;
+                    }
+                }
+            }
+            
+            /*function randomCellExtend(cell, table, d) {
+                var col;
+                var newCell; 
+                for (var i = table.height(); i+cell+7 <= d ; i = table.height()) {
+                    newCell = $("<tr><td></td></tr>");
+                    col = randomColor();
+                    newCell.css("backgroundColor", col);
+                    table.append(newCell);
+                }
+            }*/
+            
+            function randomColor(){
+                var c = "#";
+                while (c.length < 7) {
+                    c += hexes[Math.round(Math.random()*15)];
+                }
+                return c;
+            }
+            
+            function rollOut(elem) {
+                if (lastElem && $(elem).attr("id") == lastElem.attr("id"))
+                    return;
+                if (!animating) {
+                    animating = true;
+                    var jelem = $(elem);
+                    var color = jelem.css("background-color");
+                    var bkg = $("#background");
+                    
+                    if (first) {  
+                        bkg.css("backgroundColor", color);
+                        getContent(bkg, jelem);
+                    } else {
+                        /* set up so that whichever finishes last -- the server 
+                         * call or the "roll-up" animation -- will switch the content 
+                         * and start the "roll-out" animation
+                         */
+                        getContent(bkg, jelem);
+                        shrink(bkg, jelem, color);
+                    }
+                    if (lastElem) {
+                        lastElem.animate({
+                            borderBottomWidth: "7px"
+                        }, {duration: 400, queue: false});
+                    }   
+                jelem.animate({
+                    borderBottomWidth: "0px"
+                }, {duration: 400, queue: false});
+            }
+    }
+            
+    function shrink(bkg, jelem, color) {
+        fadeImgOut();
+        bkg.animate({
+            height: "0%"
+        }, 685, "easeInOutQuad", function(){
+            rolledUp = true;
+            bkg.css("backgroundColor", color);
+            // stuff to switch stuff goes here
+            if (gotContent) {
+                switchContent(bkg, jelem);
+            }
+        });
+    }
+            
+    function getContent(bkg, jelem) {
+        // url follows format: filepath + name of page + "_in"
+        $.ajax(URLprefix+jelem.attr("id")+"_in.html", {dataType: "HTML"}).done(
+        function(html){
+            gotContent = true;
+            bigNode = $(html);
+            if (rolledUp) {
+                switchContent(bkg, jelem);
+            }
+        });
+    }
+            
+    function switchContent(bkg, jelem) {
+        $("#content").html(bigNode);
+        window.scrollTo(0, 0);
+        expand(bkg, jelem);
+    }
+            
+    function expand(bkg, jelem) {
+        bkg.animate({
+            height: "100%"
+        }, 685, "easeInOutQuad", function(){
+            if (first) {
+                first = false;
+            }
+            lastElem = jelem
+            animating = false;
+                    
+            //-- after expand effects begin
+            expandLines();
+            fadeImgIn();
+            //-- after expand effects end
+            gotContent = false;
+            rolledUp = false;
+        });
+    }
+            
+    function expandLines() {
+        $("hr").each(function() {
+            $(this).animate({
+                width: "100%"
+            }, {duration: 475, easing: "easeOutQuad", queue: false});
+        });
+    }
+            
+    function fadeImgIn() {
+        if ("#sub_button")
+            fadeButtonIn();
+        $("img.pro_img").each(function() {
+            var that = $(this);
+            that.fadeIn(475);
+        });
+    }
+            
+    function fadeImgOut() {
+        $("#mail").val("");
+        $("#subject").val("");
+        $("#textbox").val("");
+                
+        if ("#sub_button")
+            fadeButtonOut();
+        $("img.pro_img").each(function() {
+            var that = $(this);
+            that.fadeOut(475);
+        });
+    }
+            
+    function fadeButtonIn() {
+        var c = $("#background").css("backgroundColor");
+        var b = $("#sub_button")
+                
+        b.css("color", c);
+                
+        //alert("rollin");
+        b.fadeIn(475);
+    }
+            
+    function fadeButtonOut() {
+                
+        //alert("rollout");
+        $("#sub_button").fadeOut(475);
+    }
+            
+    window.onload=init;
+        </script> 
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <title></title>
+    </head>
+    <body>
+        <div id="menubar">
+            <div id="about" class="button first" onclick="rollOut(this)">
+                <div class="icon"><img src="./Res/Image/Me.png"></div>
+                <div class="fullButton"><div>&nbsp</div><div>ABOUT</div></div>
+                <div class="brokenButton">
+                    <div>AB</div><div>OUT</div>
+                </div>
+            </div>
+            <div id="contact" class="button" onclick="rollOut(this)">
+                <div class="icon"><img src="./Res/Image/Message.png"></div>
+                <div class="fullButton"><div>&nbsp</div><div>CONTACT</div></div>
+                <div class="brokenButton">
+                    <div>CON</div><div>TACT</div>
+                </div>
+            </div>
+            <div id="experience" class="button" onclick="rollOut(this)">
+                <div class="icon"><img src="./Res/Image/Resume.png"></div>
+                <div class="fullButton"><div>&nbsp</div><div>EXPERIENCE</div></div>
+                <div class="brokenButton">
+                    <div>EXPER</div><div>IENCE</div>
+                </div>
+
+            </div>
+            <div id="projects" class="button last" onclick="rollOut(this)">
+                <div class="icon"><img src="./Res/Image/Portfolio.png"></div>
+                <div class="fullButton"><div>&nbsp</div><div>PROJECTS</div></div>
+                <div class="brokenButton">
+                    <div>PROJ</div><div>ECTS</div>
+                </div>
+
+            </div>
+        </div>
+        <!--table id="sidebar" cellspacing="0">
+            <tr>
+                <td id="about" class="button first" onclick="rollOut(this)">ABOUT</td>
+                <td id="contact" class="button" onclick="rollOut(this)">CONTACT</td>
+                <td id="experience" class="button" onclick="rollOut(this)">EXPERIENCE</td>
+                <td id="projects" class="button last" onclick="rollOut(this)">PROJECTS</td>
+            </tr>
+        </table-->
+        <div id="content"></div>
+        <!--h4 id="notif">SITE UNDER CONSTRUCTION</h4-->
+        <div id="background"></div>
+    </body>
+</html>

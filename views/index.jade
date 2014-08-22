@@ -3,6 +3,7 @@ extends main
 block head
 
 block context
+  - var context_offset = true
   include _context_history.jade
 
 block older_block
@@ -13,6 +14,6 @@ block older_block
         div older
 
 block body
-  div#wrapper
+  div#wrapper.offset
     for article in ar_obj
       include _article.jade
