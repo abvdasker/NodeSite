@@ -1,3 +1,8 @@
+// sets default environment to 'development'
+if (typeof process.env.NODE_ENV == 'undefined') {
+  process.env.NODE_ENV = 'development'
+}
+
 console.log("NODE_ENV: "+process.env.NODE_ENV);
 
 var express = require('express');

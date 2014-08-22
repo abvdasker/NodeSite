@@ -44,8 +44,6 @@ exports.route = function(express, app) {
 
   app.set("views", __dirname +"/../views");
   
-  app.use(app.router);
-  
   // all static files!
   app.use('/static', express.static(__dirname + "/../public"));
   
