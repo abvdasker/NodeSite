@@ -1,7 +1,7 @@
 extends main
 
 block head
-  link(type="text/css" rel="stylesheet" href="/static/style/font-awesome.css")
+  link(type="text/css" rel="stylesheet" href="/static/style/font-awesome.min.css")
   link(type="text/css" rel="stylesheet" href="/static/style/contact.css")
 
 block body
@@ -11,18 +11,14 @@ block body
         table
           tr
             td
-              div#email.container
-                div.str
-                  a(href="mailto:hal.c.rogers@gmail.com") hal.c.rogers@gmail.com
-                div.icon
+              div.hitbox
+                i.fa.fa-envelope.fa-6x
+                a#email(href="mailto:hal.c.rogers@gmail.com") hal.c.rogers@gmail.com
             td
-              div#facebook.container
-                div.str
-                   a(href="https://www.facebook.com/halcr1") Facebook
-                div.icon
+              div.hitbox
+                i.fa.fa-github.fa-6x
+                a#github(href="https://github.com/abvdasker") Github
             td
-              div#linkedin.container
-                div.str
-                  a(href="http://www.linkedin.com/pub/hal-rogers/13/a57/354") LinkedIn
-                div.icon
-        
+              div.hitbox
+                i.fa.fa-linkedin-square.fa-6x
+                a#linkedin(href="http://www.linkedin.com/pub/hal-rogers/13/a57/354/") LinkedIn

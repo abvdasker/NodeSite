@@ -21,53 +21,47 @@ td {
   text-align: center;
 }
 
-div.container {
-  position: relative;
+.hitbox {
+  position: absolute;
+  top: 0;
+  left: 25%;
+  width: 50%;
+  height: 100%;
 }
 
-.container a:hover {
+.hitbox a {
+  margin-top: 18px;
+  font-size: 40px;
+  display: none;
+}
+
+.hitbox a:hover {
   text-decoration: none;
 }
 
-div.container .str {
-  font-size: 25px;
+.hitbox:hover i {
   display: none;
 }
 
-#email .str > a {
+.hitbox:hover a {
+  display : block;
+}
+
+#email {
+  margin-top: 22px;
+  font-size: 30px;
+  color: #D0676F;
+  margin-left: -50%;
+}
+
+#github {
   color: #6AB594;
 }
 
-#facebook .str > a {
+#linkedin {
   color: rgb(133, 155, 220);
 }
 
-#linkedin .str > a {
-  color: #D0676F;
-}
-
-div.container:hover .str {
-  display: block;
-}
-
-div.container .icon:before {
-  font-family: "FontAwesome";
-  font-size: 90px;
-  display: block;
-}
-
-div.container:hover .icon:before {
-  display: none;
-}
-
-#email .icon:before {
-  content: "\f0e0";
-}
-
-#facebook .icon:before {
-  content: "\f082";
-}
-
-#linkedin .icon:before {
-  content: "\f08c";
+.fa-6x {
+  font-size: 6em;
 }
