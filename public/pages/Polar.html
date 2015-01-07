@@ -3,11 +3,151 @@
     <head>
     <script type="text/javascript"> 
 var d = new Date();
-var oldDim;
-var rendCount;
-var rendPercent;
-var isMobile = false;
-var fps = 60;
+
+function Polar() {
+  var canvas = document.getElementById("art");
+  var ctx = canvas.getContext("2d");
+  var isMobile = checkIfMobile();
+	var rendPercent = 0.00 / 1000.00;
+  var fallbackFPS = 60;
+	var rendCount = 0;
+  var oldDim;
+  var center;
+  var padding;
+  var r;
+
+  // use privileged functions to access private members
+  this.incr = incr;
+  this.animate = animate;
+  this.drawArc = drawArc;
+  this.setDim = setDim;
+  this.dimChanged = dimChanged;
+  this.drawArt = function() {
+  	//setInterval(animate, 1000/fps);
+  	if ( !window.requestAnimationFrame ) {
+  		window.requestAnimationFrame = ( function() {
+			 
+  			return (window.webkitRequestAnimationFrame ||
+  			window.mozRequestAnimationFrame ||
+  			window.oRequestAnimationFrame ||
+  			window.msRequestAnimationFrame ||
+  			function(callback, element) {
+				 
+  				window.setTimeout( callback, 1000 / fallbackFPS );
+				 
+  			});
+		 
+  		})();
+		
+  	}
+
+  	window.requestAnimationFrame(this.animate);
+  }
+  
+  function checkIfMobile() {
+  	var m_str = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/);
+    var isMobile = m_str != null ? true : false;
+    return isMobile;
+  }
+  
+  function drawArc(p) {
+  	ctx.beginPath(); // seconds
+  	ctx.moveTo(center, padding);
+  	colors = get_colors(p);
+  	ctx.strokeStyle = "rgb(" + colors[0] + "," + colors[1] + "," + colors[2] + ")";
+  	ctx.arc(center, center, r, (-0.5) * Math.PI, ((2 * Math.PI * p) - 0.5 * Math.PI));
+  	ctx.stroke();
+  }
+  
+  function animate() {
+  	if (isMobile)
+  		rendCount = 61;
+  	rendPercent = rendCount / 60.00;
+	
+  	var dim = setDim();
+  	if (dimChanged(dim)) {
+  		canvas.width = dim - 15;
+  		canvas.height = dim - 15;
+  		oldDim = dim;
+	
+    	center = dim / 2;
+    	padding = 50; // padding around current arc
+    	r = center - padding; // radius of current arc
+  	} else {
+  		if (!oldDim) {
+  			oldDim = dim;
+  		}
+  	}
+	
+  	var ms = (new Date()).getMilliseconds();
+  	var p_ms = ms / 999;
+  	var p_s = CalcP.getp_s(p_ms); // seconds(60)
+  	var p_m = CalcP.getp_m(p_s); // minutes(60)
+  	var p_h = CalcP.getp_h(p_m); // hours(24)
+  	var p_d = CalcP.getp_d(p_h); // days of month(28-31)
+  	var p_month = CalcP.getp_month(p_d); // month of year?
+	
+  	if (rendPercent < 1) {
+  		p_s = p_s * rendPercent;
+  		p_m = p_m * rendPercent;
+  		p_h = p_h * rendPercent;
+  		p_d = p_d * rendPercent;
+  		p_month = p_month * rendPercent;
+  	}
+	
+  	var colors = new Array();
+	
+  	ctx.clearRect(0, 0, dim, dim);
+  	ctx.lineWidth = 10;
+	
+    drawArc(p_s);
+  	incr();
+    drawArc(p_m);
+    incr();
+    drawArc(p_h);
+    incr();
+    drawArc(p_d);
+    incr();
+    drawArc(p_month);
+    
+  	if (!isMobile) {
+  		timeText(p_ms, p_s, p_m, p_h, center, r, ctx);
+  	}
+	
+  	if (rendPercent <= 1)
+  		rendCount++;
+	
+  	// next render request. Controlled framerate <= 60Hz
+  	window.requestAnimationFrame(animate);
+  }
+  
+	function dimChanged(newDim) {
+		if (oldDim) {
+			return true;
+		} else {
+			if (oldDim != newDim)
+				return true;
+			else
+				return false;
+		}
+	}
+	function setDim() { // finds lesser dimenstion
+		var x = window.innerWidth;
+		var y = window.innerHeight;
+		var dim;
+		if (x < y) {
+			dim = x;
+		} else {
+			dim = y;
+		}
+		return dim;
+	}
+	function incr() { // updates for next arc
+		padding += 25;
+		r = center - padding;
+	}
+}
+
 var CalcP = {
 	/*
 	 * begin cascading calculations p ranges from 0 to 1; polar p
@@ -81,209 +221,56 @@ var CalcP = {
 };
 
 function init() {
-	rendPercent = 0.00 / 1000.00;
-	rendCount = 0;
-	drawArt();
+  var polarClock = new Polar;
+	polarClock.drawArt();
 }
 
-function drawArt() {
-	var m_str = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/);
-	if (m_str != null)
-		isMobile = true;
-	//setInterval()
-	//setInterval(animate, 1000/fps);
-	if ( !window.requestAnimationFrame ) {
-		window.requestAnimationFrame = ( function() {
-			 
-			return (window.webkitRequestAnimationFrame ||
-			window.mozRequestAnimationFrame ||
-			window.oRequestAnimationFrame ||
-			window.msRequestAnimationFrame ||
-			function( /* function FrameRequestCallback */ callback, element) {
-				 
-				window.setTimeout( callback, 1000 / 60 );
-				 
-			});
-		 
-		})();
-		
-	}
-	
-	window.requestAnimationFrame(animate)
-	//alert(window.requestAnimationFrame);
-}
-
-function animate() {
-	if (isMobile)
-		rendCount = 61;
-	rendPercent = rendCount / 60.00;
-	var canvas = document.getElementById("art");
-	var ctx = canvas.getContext("2d");
-	
-	var dim = setDim();
-	if (dimChanged(dim)) {
-		canvas.width = dim - 15;
-		canvas.height = dim - 15;
-		oldDim = dim;
-	} else {
-		if (!oldDim) {
-			oldDim = dim;
-		}
-	}
-	
-	var center = dim / 2;
-	var padding = 50; // padding around current arc
-	var r = center - padding; // radius of current arc
-	
-	var ms = (new Date()).getMilliseconds();
-	var p_ms = ms / 999;
-	var p_s = CalcP.getp_s(p_ms); // seconds(60)
-	var p_m = CalcP.getp_m(p_s); // minutes(60)
-	var p_h = CalcP.getp_h(p_m); // hours(24)
-	var p_d = CalcP.getp_d(p_h); // days of month(28-31)
-	var p_month = CalcP.getp_month(p_d); // month of year?
-	
-	if (rendPercent < 1) {
-		p_s = p_s * rendPercent;
-		p_m = p_m * rendPercent;
-		p_h = p_h * rendPercent;
-		p_d = p_d * rendPercent;
-		p_month = p_month * rendPercent;
-	}
-	
-	var colors = new Array();
-	
-	ctx.clearRect(0, 0, dim, dim);
-	ctx.lineWidth = 10;
-	
-	ctx.beginPath(); // seconds
-	ctx.moveTo(center, padding);
-	colors = get_colors(p_s);
-	ctx.strokeStyle = "rgb(" + colors[0] + "," + colors[1] + "," + colors[2] + ")";
-	ctx.arc(center, center, r, (-0.5) * Math.PI, ((2 * Math.PI * p_s) - 0.5 * Math.PI));
-	ctx.stroke();
-	
-	incr();
-	
-	ctx.beginPath(); // minutes
-	ctx.moveTo(center, padding);
-	colors = get_colors(p_m);
-	ctx.strokeStyle = "rgb(" + colors[0] + "," + colors[1] + "," + colors[2] + ")";
-	ctx.arc(center, center, r, (-0.5) * Math.PI, ((2 * Math.PI * p_m) - 0.5 * Math.PI));
-	ctx.stroke();
-	
-	incr();
-	
-	ctx.beginPath(); // hours
-	ctx.moveTo(center, padding);
-	colors = get_colors(p_h);
-	ctx.strokeStyle = "rgb(" + colors[0] + "," + colors[1] + "," + colors[2] + ")";
-	ctx.arc(center, center, r, (-0.5) * Math.PI, ((2 * Math.PI * p_h) - 0.5 * Math.PI));
-	ctx.stroke();
-	
-	incr();
-	
-	ctx.beginPath(); // days of month
-	ctx.moveTo(center, padding);
-	colors = get_colors(p_d);
-	ctx.strokeStyle = "rgb(" + colors[0] + "," + colors[1] + "," + colors[2] + ")";
-	ctx.arc(center, center, r, (-0.5) * Math.PI, ((2 * Math.PI * p_d) - 0.5 * Math.PI));
-	ctx.stroke();
-	
-	incr();
+function timeText(p_ms, p_s, p_m, p_h, center, r, ctx) {
+	/*
+	 *	Beginning of time text code
+	 */
 	
 	ctx.beginPath();
-	ctx.moveTo(center, padding);
-	colors = get_colors(p_month);
-	ctx.strokeStyle = "rgb(" + colors[0] + "," + colors[1] + "," + colors[2] + ")";
-	ctx.arc(center, center, r, (-0.5) * Math.PI, ((2 * Math.PI * p_month) - 0.5 * Math.PI));
-	ctx.stroke();
+	ctx.fillStyle = "black";
+	ctx.font = "15px Helvetica";
 	
-	if (!isMobile) {
-		timeText();
+	var seconds = Math.floor(p_s * 60);
+	seconds = seconds.toString();
+	if (seconds.length < 2) {
+		seconds = "0" + seconds;
 	}
 	
-	if (rendPercent <= 1)
-		rendCount++;
-	
-	function incr() { // updates for next arc
-		padding += 25;
-		r = center - padding;
+	var minutes = Math.floor(p_m * 60);
+	minutes = minutes.toString();
+	if (minutes.length < 2) {
+		minutes = "0" + minutes;
 	}
 	
-	function dimChanged(newDim) {
-		if (oldDim) {
-			return true;
-		} else {
-			if (oldDim != newDim)
-				return true;
-			else
-				return false;
-		}
+	var hours = Math.floor(p_h * 24);
+	
+	var milliseconds = Math.floor(p_ms * 100);
+	milliseconds = milliseconds.toString();
+	if (milliseconds.length < 2) {
+		milliseconds = "0" + milliseconds;
 	}
 	
-	function timeText() {
-		/*
-		 *	Beginning of time text code
-		 */
-		
-		ctx.beginPath();
-		ctx.fillStyle = "black";
-		ctx.font = "15px Helvetica";
-		
-		var seconds = Math.floor(p_s * 60);
-		seconds = seconds.toString();
-		if (seconds.length < 2) {
-			seconds = "0" + seconds;
-		}
-		
-		var minutes = Math.floor(p_m * 60);
-		minutes = minutes.toString();
-		if (minutes.length < 2) {
-			minutes = "0" + minutes;
-		}
-		
-		var hours = Math.floor(p_h * 24);
-		
-		var milliseconds = Math.floor(p_ms * 100);
-		milliseconds = milliseconds.toString();
-		if (milliseconds.length < 2) {
-			milliseconds = "0" + milliseconds;
-		}
-		
-		var time_ar = new Array(4);
-		time_ar[0] = hours;
-		time_ar[1] = minutes;
-		time_ar[2] = seconds;
-		time_ar[3] = milliseconds;
-		var str = "";
-		for (var i = 0; time_ar[i] && ctx.measureText(str + time_ar[i]).width < r; i++) {
-			if (i > 0)
-				str += ":";
-			str += time_ar[i];
-		}
-		var str_w = ctx.measureText(str).width;
-		ctx.fillText(str, center - (str_w / 2), center);
-		
-		/*
-		 *	end of time text code
-		 */
+	var time_ar = new Array(4);
+	time_ar[0] = hours;
+	time_ar[1] = minutes;
+	time_ar[2] = seconds;
+	time_ar[3] = milliseconds;
+	var str = "";
+	for (var i = 0; time_ar[i] && ctx.measureText(str + time_ar[i]).width < r; i++) {
+		if (i > 0)
+			str += ":";
+		str += time_ar[i];
 	}
+	var str_w = ctx.measureText(str).width;
+	ctx.fillText(str, center - (str_w / 2), center);
 	
-	function setDim() { // finds lesser dimenstion
-		var x = window.innerWidth;
-		var y = window.innerHeight;
-		var dim;
-		if (x < y) {
-			dim = x;
-		} else {
-			dim = y;
-		}
-		return dim;
-	}
-	
-	// next render request. Controlled framerate <= 60Hz
-	window.requestAnimationFrame(animate);
+	/*
+	 *	end of time text code
+	 */
 }
 
 /*
