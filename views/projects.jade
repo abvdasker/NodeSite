@@ -1,47 +1,57 @@
 extends main
 
 block body
-  div#wrapper(class=page_class)
-    div.article
-      div.ar_wrapper
-        div.header
-          div.ar_title
-            a.title_link(href="http://awnword.org") AWNword.org
-        hr
-        div.content
-          p.
-            This is a wordpress blog for the Amherst Women's Network I helped build and deploy for a friend. It features a panel format à la <i>The New York Times'</i> Room For Debate and features responses from Amherst alumnae on a wide range of topics.
-          a(href="http://awnword.org")
-            img(src="/static/image/awnword_cap.jpg")
-    div.article
-      div.ar_wrapper
-        div.header
-          div.ar_title
-            a.title_link(href="/static/pages/Polar.html") Polar Clock
-        hr
-        div.content
-          p A polar clock made in pure JavaScript using the HTML5 Canvas element.
-          a(href="/static/pages/Polar.html")
-            img(src="/static/image/polar_cap.jpg")
-    div.article
-      div.ar_wrapper
-        div.header
-          div.ar_title
-            a.title_link(href="/static/pages/public_html/index.html") Amherst.edu Personal Site
-        hr
-        div.content
-          p Lots of bright colors and swoopy javascript animations.
-          a(href="/static/pages/public_html/index.html")
-            img(src="/static/image/pers-site.jpg")
-    div.article
-      div.ar_wrapper
-        div.header
-          div.ar_title
-            a.title_link(href="https://github.com/abvdasker/MemApp") MemApp for Android
-        hr
-        div.content
-          a(href="https://github.com/abvdasker/MemApp")
-            img.floater.right(align="right", src="/static/image/android_cap.jpg")
-          p A little toy app for Android using procedurally generated shapes to test the player's memory. The linked github repository contains an installable apk file. This should work with Android > 3.0 . Includes snarky messages when you lose. 
+  div#wrapper.page_class
+    div.article-container
+      div.glass
+      div.article
+        div.ar_wrapper
+          div.header
+            div.ar_title
+              a.title_link(href="http://awnword.org") AWNword.org
+          hr
+          div.content
+            p.
+              This is a wordpress blog for the Amherst Women's Network I helped build and deploy for a friend. It features a panel format à la <i>The New York Times'</i> Room For Debate and features responses from Amherst alumnae on a wide range of topics.
+            a(href="http://awnword.org")
+              img(src="/static/image/awnword_cap.jpg")
 
+    div.article-container
+      div.glass
+      div.article
+        div.ar_wrapper
+          div.header
+            div.ar_title
+              a.title_link(href="/static/pages/Polar.html") Polar Clock
+          hr
+          div.content
+            p A polar clock made in pure JavaScript using the HTML5 Canvas element.
+            a(href="/static/pages/Polar.html")
+              img(src="/static/image/polar_cap.jpg")
+
+    div.article-container
+      div.glass
+      div.article
+        div.ar_wrapper
+          div.header
+            div.ar_title
+              a.title_link(href="/static/pages/public_html/index.html") Amherst.edu Personal Site
+          hr
+          div.content
+            p Lots of bright colors and swoopy javascript animations.
+            a(href="/static/pages/public_html/index.html")
+              img(src="/static/image/pers-site.jpg")
+
+    div.article-container
+      div.glass
+      div.article
+        div.ar_wrapper
+          div.header
+            div.ar_title
+              a.title_link(href="https://github.com/abvdasker/MemApp") MemApp for Android
+          hr
+          div.content
+            a(href="https://github.com/abvdasker/MemApp")
+              img.floater.right(align="right", src="/static/image/android_cap.jpg")
+            p A little toy app for Android using procedurally generated shapes to test the player's memory. The linked github repository contains an installable apk file. This should work with Android > 3.0 . Includes snarky messages when you lose. 
         

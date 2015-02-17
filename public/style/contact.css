@@ -5,7 +5,7 @@
 }
 
 
-.article.contact_wrapper {
+.contact_wrapper {
   margin-top: 13%;
 }
 
@@ -48,8 +48,8 @@ td {
 }
 
 #email {
-  margin-top: 22px;
-  font-size: 30px;
+  margin-top: 24px;
+  font-size: 28px;
   color: #D0676F;
   margin-left: -50%;
 }

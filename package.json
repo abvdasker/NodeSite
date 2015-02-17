@@ -12,6 +12,6 @@
     "body-parser" : "x",
     "express-session" : "x",
     "cookie-parser" : "x",
-    "server-favicon" : "x"
-	}
+    "serve-favicon" : "x"
+    }
 }

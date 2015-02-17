@@ -1,13 +1,15 @@
-div.article
-  div.ar_wrapper
-    div.ar_header
-      div.ar_title
-        a.title_link(href="/article/"+article["id"])=article["title"]
-      div.ar_sep |
-      div.ar_date=formatDate(article["created"])
-    hr
-    div.content!=article.article
-    if (!datesEqual(article["created"], article["updated"]))
-      hr.ar_footer
-      div.updated="updated: "+formatDate(article["updated"])
+div.article-container
+  div.glass
+  div.article
+    div.ar_wrapper
+      div.ar_header
+        div.ar_title
+          a.title_link(href="/article/"+article["id"])=article["title"]
+        div.ar_sep |
+        div.ar_date=formatDate(article["created"])
+      hr
+      div.content!=article.article
+      if (!datesEqual(article["created"], article["updated"]))
+        hr.ar_footer
+        div.updated="updated: "+formatDate(article["updated"])
         
